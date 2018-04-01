@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@android:id/text1"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:minHeight="?android:attr/listPreferredItemHeight"
+    android:paddingLeft="14dip"
+    android:paddingStart="14dip"
+    android:text="Item"
+    android:textColor="@color/cardview_dark_background"
+    android:textSize="18sp"
+    android:textStyle="bold"
+    tools:ignore="RtlSymmetry" />

@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">PediuPagou Funcionário</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_detalhes_pedido">Detalhes_pedido</string>
+    <string name="title_activity_nota_pdf">NotaPdf</string>
+
+    <string name="foto_capa_do_usu_rio">Foto Capa do Usuário</string>
+    <string name="cancelar_pedido">Cancelar Pedido</string>
+</resources>

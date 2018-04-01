@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/cardview1"
+        android:layout_marginTop="4dp"
+        android:layout_alignParentTop="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <CheckBox
+            android:id="@+id/checkBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="22dp"
+            android:layout_marginStart="22dp"
+            android:layout_marginTop="12dp"
+            android:text="Restaurante 1" />
+    </android.support.v7.widget.CardView>
+
+<android.support.v7.widget.CardView
+    android:layout_below="@+id/cardview1"
+    android:id="@+id/cardview"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
+
+<RelativeLayout
+    android:layout_gravity="bottom"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/descricao"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/checkBox2"
+        android:layout_alignStart="@+id/checkBox2"
+        android:layout_below="@+id/checkBox2"
+        android:layout_marginTop="6dp"
+        android:layout_toLeftOf="@+id/bt_remove"
+        android:layout_toStartOf="@+id/bt_remove"
+        android:text="Pote 300g" />
+
+    <CheckBox
+        android:layout_marginRight="15dp"
+        android:id="@+id/checkBox2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="22dp"
+        android:layout_marginStart="22dp"
+        android:layout_marginTop="10dp"
+        android:layout_toLeftOf="@+id/bt_remove"
+        android:layout_toStartOf="@+id/bt_remove"
+        android:text="Sorvete"
+        android:layout_marginEnd="15dp" />
+
+    <ImageButton
+        android:padding="2dp"
+        android:foreground="?attr/selectableItemBackground"
+        android:background="@color/transparent"
+        android:src="@drawable/ic_add_black_24dp"
+        android:id="@+id/bt_add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/checkBox2"
+        android:layout_marginEnd="14dp"
+        android:layout_marginRight="14dp"
+        android:text="Button" />
+
+    <TextView
+        android:id="@+id/quantidade"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/bt_add"
+        android:layout_alignTop="@+id/bt_add"
+        android:layout_marginLeft="4dp"
+        android:layout_marginRight="4dp"
+        android:layout_toLeftOf="@+id/bt_add"
+        android:layout_toStartOf="@+id/bt_add"
+        android:gravity="center"
+        android:text="1"
+        android:textColor="#000"
+        android:textSize="22sp" />
+
+    <ImageButton
+        android:id="@+id/bt_remove"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/quantidade"
+        android:layout_toLeftOf="@+id/quantidade"
+        android:layout_toStartOf="@+id/quantidade"
+        android:background="@color/transparent"
+        android:foreground="?attr/selectableItemBackground"
+        android:padding="2dp"
+        app:srcCompat="@drawable/ic_remove_black_24dp" />
+
+    <TextView
+        android:id="@+id/preco"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/bt_add"
+        android:layout_alignRight="@+id/bt_add"
+        android:layout_alignTop="@+id/descricao"
+        android:layout_marginBottom="10dp"
+        android:text="R$4.50"
+        android:textColor="@android:color/background_dark"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+</RelativeLayout>
+</android.support.v7.widget.CardView>
+</RelativeLayout>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--
+    <color name="primaryColor">#212121</color>
+    <color name="primaryLightColor">#484848</color>
+    <color name="primaryDarkColor">#000000</color>
+    <color name="primaryTextColor">#ffffff</color>
+    <color name="colorAccent">#101010</color>
+
+    -->
+
+    <color name="primaryColor">#ffffff</color>
+    <color name="primaryLightColor">#ffffff</color>
+    <color name="primaryDarkColor">#c6c6c6</color>
+    <color name="primaryTextColor">#000000</color>
+    <color name="colorAccent">#00ca8a</color>
+
+
+    <color name="card_background">#ffffff</color>
+    <color name="card_shadow_1">#d4d4d4</color>
+    <color name="card_shadow_2">#dddddd</color>
+    <color name="card_detailing">#eee</color>
+    <color name="colorBackgroundFloating">#ffffff</color>
+    <color name="transparent">#00000000</color>
+
+    <color name="mb_white">#ffffff</color>
+    <color name="green">#00bfa5</color>
+    <color name="mb_blue">#ff0099cc</color>
+    <color name="mb_blue_dark">#ff00719b</color>
+    <color name="mb_purple">#ffaa66cc</color>
+    <color name="mb_purple_dark">#ff8855aa</color>
+    <color name="mb_green">#ff99cc00</color>
+    <color name="mb_green_dark">#ff6d9b00</color>
+    <color name="mb_red">#ffff4444</color>
+    <color name="mb_red_dark">#ffcd3a3a</color>
+    <color name="mb_gray">#ffdedede</color>
+    <color name="holo_blue_bright">#04d9fa</color>
+    <color name="holo_green_light">#ff99cc00</color>
+    <color name="holo_orange_light">#ffeb3b</color>
+    <color name="holo_red_light">#ffff4444</color>
+
+    <color name="quase_transp">#32000000</color>
+    <color name="gray800">#424242</color>
+
+
+</resources>

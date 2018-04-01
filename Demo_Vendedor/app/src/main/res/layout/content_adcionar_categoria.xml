@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="rd.com.vendedor.adm.activity.Adcionar_categoria"
+    tools:showIn="@layout/activity_adcionar_categoria">
+
+    <TextView
+        android:layout_margin="15dp"
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="171dp"
+        android:text="Aqui será uma tela para adicionar uma nova categoria de produtos que aparecerão no spinner de categorias quando for adiconar um produto, não consegui terminar"
+        android:textSize="18sp" />
+</RelativeLayout>

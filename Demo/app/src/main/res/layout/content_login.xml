@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    android:background="@color/primaryColor"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_marginTop="15dp"
+        android:id="@+id/text_input_layout_nome"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="30dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginEnd="30dp"
+        android:hint="Seu nome">
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/editText4"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:ems="10"
+            android:inputType="textCapSentences|textPersonName" />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/text_input_layout_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_below="@+id/text_input_layout_nome"
+        android:hint="Email"
+        android:layout_marginLeft="30dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginEnd="30dp">
+    <android.support.design.widget.TextInputEditText
+        android:id="@+id/text_input_edit_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textEmailAddress"
+        />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/text_input_layout_senha1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Crie uma senha"
+        android:layout_marginTop="15dp"
+        android:layout_below="@+id/text_input_layout_email"
+        android:layout_marginLeft="30dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginEnd="30dp">
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/editText2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPassword"
+            />
+    </android.support.design.widget.TextInputLayout>
+
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/text_input_layout_senha2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Confirme sua senha"
+        android:layout_marginTop="15dp"
+        android:layout_below="@+id/text_input_layout_senha1"
+        android:layout_marginLeft="30dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginEnd="30dp">
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/editText3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPassword"
+            />
+    </android.support.design.widget.TextInputLayout>
+
+    <com.dd.morphingbutton.impl.IndeterminateProgressButton
+        android:id="@+id/btnMorph1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textInputLayout5"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:layout_marginTop="25dp"
+        android:text="Criar"
+        android:textColor="@color/mb_white" />
+
+    <Button
+        android:layout_marginBottom="30dp"
+        android:id="@+id/bt_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnMorph1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:background="@color/transparent"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:text="@string/j_tem_conta_fa_a_o_login"
+        android:textColor="@color/primaryTextColor" />
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_marginEnd="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/text_input_layout_senha2"
+        android:layout_alignStart="@+id/text_input_layout_senha2"
+        android:layout_below="@+id/text_input_layout_senha2"
+        android:layout_marginTop="15dp"
+        android:id="@+id/textInputLayout5"
+        android:layout_marginRight="30dp">
+
+        <rd.com.demo.auxiliares.CPFEditText
+            android:id="@+id/cpf"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="CPF"
+            android:inputType="number" />
+    </android.support.design.widget.TextInputLayout>
+
+</RelativeLayout>
+</ScrollView>

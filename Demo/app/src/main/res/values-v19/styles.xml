@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="CriarCadastro" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+        <item name="colorPrimaryDark">@color/primaryColor</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorPrimary">@color/primaryColor</item>
+        <item name="android:colorBackground">#fff</item>
+        <item name="android:textColorPrimary">#fff</item>
+        <item name="android:colorForeground">#000</item>
+        <item name="android:textColorSecondary">#fffffd</item>
+        <item name="android:windowBackground">@color/background_material_light</item>
+        <item name="android:textColorPrimaryInverse">@android:color/secondary_text_dark_nodisable
+        </item>
+        <item name="android:textColorSecondaryInverse">#dcdcdc</item>
+    </style>
+</resources>

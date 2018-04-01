@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cardview"
+    android:layout_margin="5dp">
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:foreground="?attr/selectableItemBackground"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:cropToPadding="true"
+            android:maxHeight="130dp"
+            android:minHeight="100dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/cafe" />
+
+        <TextView
+            android:id="@+id/nameTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/imageView"
+            android:layout_marginLeft="7dp"
+            android:layout_marginRight="7dp"
+            android:layout_marginTop="16dp"
+            android:layout_toLeftOf="@+id/edit"
+            android:layout_toStartOf="@+id/edit"
+            android:maxLines="2"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/nameTextView"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="20dp"
+            android:layout_marginEnd="14dp"
+            android:layout_marginRight="14dp"
+            android:src="@drawable/ic_edit_white_36dp"
+            app:backgroundTint="#009bff"
+
+            />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/remove"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/nameTextView"
+            android:layout_alignRight="@+id/nameTextView"
+            android:layout_alignTop="@+id/edit"
+            android:layout_marginEnd="12dp"
+            android:layout_marginRight="12dp"
+            android:src="@drawable/ic_add_white_36dp"
+            app:backgroundTint="#009bff" />
+
+        <TextView
+            android:id="@+id/text_quantidade"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/nameTextView"
+            android:layout_alignLeft="@+id/nameTextView"
+            android:layout_alignRight="@+id/nameTextView"
+            android:layout_alignStart="@+id/nameTextView"
+            android:layout_below="@+id/nameTextView"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="3dp"
+            android:text="Quantidade" />
+
+    </RelativeLayout>
+
+</android.support.v7.widget.CardView>

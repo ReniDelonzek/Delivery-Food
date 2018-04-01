@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardElevation="10dp"
+    android:layout_marginBottom="4dp"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tempo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginEnd="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="10dp"
+            android:text="Há 5 minutos"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/endereco"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignTop="@+id/tempo"
+            android:layout_marginEnd="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginStart="15dp"
+            android:layout_toLeftOf="@+id/tempo"
+            android:layout_toStartOf="@+id/tempo"
+            android:text="Endereço"
+            android:textSize="16sp" />
+
+        <TextView
+            android:maxLines="4"
+            android:id="@+id/msg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/endereco"
+            android:layout_alignStart="@+id/endereco"
+            android:layout_below="@+id/endereco"
+            android:layout_marginTop="10dp"
+            android:text="Mensagem"
+            android:textSize="16sp"
+            android:textStyle="italic" />
+
+        <com.google.android.flexbox.FlexboxLayout
+            android:id="@+id/flexbox1"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_margin="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@+id/msg"
+            app:flexDirection="row"
+            app:justifyContent="space_around">
+
+            <RelativeLayout
+                android:layout_width="100dp"
+                android:layout_height="100dp">
+            <ImageView
+                android:layout_centerHorizontal="true"
+                android:id="@+id/id1"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_margin="10dp"
+                android:src="@drawable/ic_favorite_border_white_24dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/id1"
+                    android:text="Em andamento"
+                    android:textAlignment="center" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="100dp"
+                android:layout_height="100dp">
+            <ImageView
+                android:layout_centerHorizontal="true"
+                android:id="@+id/id2"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_margin="10dp"
+                android:src="@drawable/ic_favorite_border_white_24dp" />
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_below="@+id/id2"
+                    android:text="Pronto"
+                    android:textAlignment="center" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="100dp"
+                android:layout_height="100dp">
+
+                <ImageView
+                    android:id="@+id/id3"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_margin="10dp"
+                    android:src="@drawable/ic_favorite_border_white_24dp" />
+
+                <TextView
+                    android:layout_alignParentEnd="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_below="@+id/id3"
+                    android:text="Finalizado"
+                    android:textAlignment="center" />
+            </RelativeLayout>
+        </com.google.android.flexbox.FlexboxLayout>
+
+
+    </RelativeLayout>
+</android.support.v7.widget.CardView>

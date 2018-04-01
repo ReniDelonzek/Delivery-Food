@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:foreground="?attr/selectableItemBackground"
+    android:layout_margin="2dp">
+
+    <RelativeLayout
+        android:foreground="?attr/selectableItemBackground"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/relativeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_marginRight="10dp"
+            android:layout_marginEnd="10dp"
+            android:id="@+id/nome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="12dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="12dp"
+            android:layout_toLeftOf="@+id/preco"
+            android:layout_toStartOf="@+id/preco"
+            android:text="Café 300ml"
+            android:textColor="@color/primaryTextColor"
+            android:textSize="22sp" />
+
+        <TextView
+            android:layout_marginRight="10dp"
+            android:id="@+id/descricao"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/nome"
+            android:layout_alignStart="@+id/nome"
+            android:layout_below="@+id/nome"
+            android:layout_marginBottom="2dp"
+            android:layout_marginTop="5dp"
+            android:layout_toLeftOf="@+id/preco"
+            android:layout_toStartOf="@+id/preco"
+            android:text="Copo com 300ml"
+            android:layout_marginEnd="10dp" />
+
+        <TextView
+            android:id="@+id/preco"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignTop="@+id/nome"
+            android:layout_marginEnd="21dp"
+            android:layout_marginRight="21dp"
+            android:text="R$4.50"
+            android:textColor="#3b3b3b"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/remove"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/ic_delete_white_36dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginStart="15dp"
+            android:layout_below="@id/descricao"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/edit"
+            android:layout_marginRight="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/remove"
+            android:layout_toLeftOf="@+id/remove"
+            android:layout_toStartOf="@+id/remove"
+            android:clickable="true"
+            app:srcCompat="@drawable/ic_edit_white_36dp" />
+
+        <TextView
+            android:id="@+id/detalhes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/edit"
+            android:layout_alignLeft="@+id/descricao"
+            android:layout_alignStart="@+id/descricao"
+            android:layout_below="@+id/descricao"
+            android:layout_marginTop="5dp"
+            android:layout_toLeftOf="@+id/edit"
+            android:layout_toStartOf="@+id/edit"
+            android:layout_marginRight="10dp"
+            android:text="Detalhes..."
+            android:textSize="12sp" />
+
+    </RelativeLayout>
+</android.support.v7.widget.CardView>

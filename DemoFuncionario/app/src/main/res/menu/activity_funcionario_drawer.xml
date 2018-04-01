@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <item android:title="Pedidos">
+        <menu>
+    <group android:checkableBehavior="single">
+        <item
+            android:checkable="true"
+            android:id="@+id/andamento"
+            android:icon="@drawable/ic_dashboard_black_24dp"
+            android:title="Novos" />
+        <item
+            android:id="@+id/prontos"
+            android:icon="@drawable/ic_done_black_24dp"
+            android:title="Prontos" />
+        <item
+            android:id="@+id/finalizados"
+            android:icon="@drawable/ic_assignment_turned_in_black_24dp"
+            android:title="Finalizados" />
+    </group>
+        </menu>
+    </item>
+    <item android:title="Suporte">
+        <menu>
+            <item
+                android:id="@+id/suporte"
+                android:icon="@drawable/ic_menu_send"
+                android:title="Envie-nos uma mensagem" />
+        </menu>
+    </item>
+
+    <item android:title="Conta">
+        <menu>
+            <item
+                android:id="@+id/sair"
+                android:icon="@drawable/ic_power_settings_new_black_24dp"
+                android:title="Trocar de conta" />
+
+        </menu>
+    </item>
+
+</menu>

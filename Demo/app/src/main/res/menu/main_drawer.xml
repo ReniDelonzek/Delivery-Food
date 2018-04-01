@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/meuspedidos"
+            android:title="Meus Pedidos" />
+        <item
+            android:id="@+id/carinhoitem"
+            android:title="Meu Carinho" />
+        <item
+            android:id="@+id/favoritos"
+            android:title="Meus Favoritos" />
+    </group>
+
+    <item android:title="Sobre">
+        <menu>
+
+            <item
+                android:id="@+id/avaliar"
+                android:title="Avalie o App" />
+
+        </menu>
+    </item>
+
+    <item android:title="Suporte">
+        <menu>
+
+        <item
+        android:id="@+id/reclamacoes"
+        android:title="Nos Envie Sugestões/Críticas..." />
+
+        </menu>
+    </item>
+    <item android:title="Conta">
+        <menu>
+            <item
+                android:id="@+id/sair"
+                android:title="Sair" />
+
+        </menu>
+    </item>
+
+</menu>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/primaryColor"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="rd.com.demo.activity.Wellcome_activity">
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        app:srcCompat="@drawable/icon_transparente" />
+
+
+    <android.support.v7.widget.CardView
+        android:foreground="?attr/selectableItemBackground"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="40dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:layout_width="wrap_content"
+        android:paddingRight="20dp"
+        android:paddingLeft="20dp"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/button6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/colorAccent"
+            android:foreground="?attr/selectableItemBackground"
+            android:paddingLeft="40dp"
+            android:paddingRight="40dp"
+            android:text="Vamos lá"
+            android:textColor="#fff"
+            android:visibility="gone" />
+    </android.support.v7.widget.CardView>
+
+    <ImageView
+        android:scaleX="0.9"
+        android:scaleY="0.9"
+        android:id="@+id/imageView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/imageView4"
+        android:layout_centerHorizontal="true"
+        app:srcCompat="@drawable/pediupagou" />
+</RelativeLayout>

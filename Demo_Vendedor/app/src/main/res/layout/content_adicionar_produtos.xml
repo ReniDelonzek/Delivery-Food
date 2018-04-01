@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="rd.com.vendedor.adm.activity.Adicionar_produtos"
+    tools:showIn="@layout/activity_adicionar_produtos">
+
+    <android.support.design.widget.TextInputLayout
+        android:hint="Produto"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="25dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginRight="25dp"
+        android:layout_marginEnd="25dp"
+        android:id="@+id/input_produto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/produto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textCapSentences|textAutoCorrect" />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:hint="Descrição"
+        android:layout_alignLeft="@+id/input_produto"
+        android:layout_alignStart="@+id/input_produto"
+        android:layout_below="@+id/input_produto"
+        android:layout_marginTop="15dp"
+        android:id="@+id/input_descricao"
+        android:layout_marginRight="25dp"
+        android:layout_marginEnd="25dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/descricao"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textCapSentences|textAutoCorrect" />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:hint="Preço"
+        android:layout_marginTop="15dp"
+        android:id="@+id/input_preco"
+        android:layout_marginRight="25dp"
+        android:layout_marginEnd="25dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/input_descricao"
+        android:layout_alignStart="@+id/input_descricao"
+        android:layout_below="@+id/input_descricao">
+
+        <EditText
+            android:id="@+id/preco"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="numberDecimal" />
+    </android.support.design.widget.TextInputLayout>
+
+    <Button
+        android:id="@+id/search_categoria"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/input_preco"
+        android:layout_alignStart="@+id/input_preco"
+        android:layout_below="@+id/input_preco"
+        android:layout_marginTop="24dp"
+        android:text="Procurar Amostra" />
+</RelativeLayout>

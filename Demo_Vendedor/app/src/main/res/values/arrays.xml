@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="spinner_list_item_array_lachonetes">
+        Aperitivos
+        Sanduiches
+        Salgados
+        Doces
+        Refrigerantes
+        Bebidas Alcoolicas
+        Frios
+        Fritos
+        Pratos Prontos
+        Outros
+
+    </string-array>
+</resources>

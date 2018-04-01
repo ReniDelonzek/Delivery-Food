@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context="rd.com.demofuncionario.activity.ConfirmarPedido"
+    android:padding="45dp">
+
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:text="Confirme o status do Pedido"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <Space
+        android:id="@+id/space"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="99dp" />
+
+    <Button
+        android:id="@+id/entregue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/space"
+        android:layout_marginStart="50dp"
+        android:layout_toEndOf="@+id/space"
+        android:background="@color/colorAccent"
+        android:paddingEnd="20dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingStart="20dp"
+        android:text="Entregue"
+        android:textColor="#fff" />
+
+    <Button
+        android:id="@+id/cancelado"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/entregue"
+        android:layout_marginEnd="50dp"
+        android:layout_toStartOf="@+id/space"
+        android:background="@android:color/transparent"
+        android:text="Cancelado" />
+</RelativeLayout>

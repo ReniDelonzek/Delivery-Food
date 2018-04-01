@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="rd.com.demo.activity.DetalhesProduto">
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/cardview1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardElevation="7dp">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp">
+
+            <ImageView
+                android:id="@+id/imagem_produto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:minHeight="280dp"
+                android:scaleType="centerCrop"
+                app:srcCompat="@drawable/cafe" />
+
+
+            <TextView
+                android:layout_marginRight="10dp"
+                android:id="@+id/nome"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@id/imagem_produto"
+                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_toLeftOf="@+id/preco"
+                android:layout_toStartOf="@+id/preco"
+                android:text="Café"
+                android:textColor="@color/cardview_dark_background"
+                android:textSize="24sp"
+                android:layout_marginEnd="10dp"
+                android:maxLines="2"/>
+
+            <TextView
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="15dp"
+                android:id="@+id/descricao"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/nome"
+                android:layout_alignStart="@+id/nome"
+                android:layout_below="@+id/nome"
+                android:layout_toEndOf="@+id/include"
+                android:layout_toLeftOf="@+id/include"
+                android:layout_toRightOf="@+id/include"
+                android:layout_toStartOf="@+id/include"
+                android:text="3 opções diferentes"
+                android:layout_marginEnd="15dp" />
+
+            <TextView
+                android:id="@+id/preco"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignTop="@+id/nome"
+                android:layout_marginEnd="15dp"
+                android:layout_marginRight="15dp"
+                android:text="R$4.50"
+                android:textColor="@color/cardview_dark_background"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:layout_marginTop="25dp"
+                android:id="@+id/comprar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignEnd="@+id/include"
+                android:layout_alignRight="@+id/include"
+                android:layout_below="@+id/include"
+                android:layout_marginEnd="6dp"
+                android:layout_marginRight="6dp"
+                android:background="@color/colorAccent"
+                android:foreground="?attr/selectableItemBackground"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:layout_marginBottom="15dp"
+                android:text="Comprar"
+                android:textColor="#fff" />
+
+            <Button
+                android:id="@+id/add_carinho"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/comprar"
+                android:layout_alignBottom="@+id/comprar"
+                android:layout_alignLeft="@+id/descricao"
+                android:layout_alignStart="@+id/descricao"
+                android:background="#d9d9d9"
+                android:foreground="?attr/selectableItemBackground"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:text="Add Carinho" />
+
+            <include
+                android:layout_marginTop="10dp"
+                layout="@layout/insert_remove"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignEnd="@+id/preco"
+                android:layout_alignRight="@+id/preco"
+                android:layout_below="@+id/nome"
+                android:id="@+id/include" />
+
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
+</RelativeLayout>

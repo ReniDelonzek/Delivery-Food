@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="rd.com.vendedor">
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/icon"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".adm.activity.Main3Activity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".adm.activity.Adicionar_produtos"
+            android:parentActivityName=".adm.activity.Main3Activity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".adm.activity.Adcionar_categoria"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".adm.activity.Adicionar_amostras"
+            android:parentActivityName=".adm.activity.Main3Activity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".adm.activity.Escolher_amostra"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".adm.activity.Pedidos"
+            android:parentActivityName=".adm.activity.Main3Activity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".adm.activity.Login" />
+        <activity
+            android:name=".adm.activity.Adc_funcionario"
+            android:label="@string/title_activity_adc_funcionario"
+            android:parentActivityName=".adm.activity.Gerenciar_funcionarios"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".adm.activity.Gerenciar_funcionarios"
+            android:label="@string/title_activity_gerir_funcionarios"
+            android:parentActivityName=".adm.activity.Main3Activity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".adm.activity.ReAutenticar"
+            android:theme="@style/Alert" />
+        <activity android:name=".adm.activity.WellComeActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".adm.activity.GerenciarProdutos"
+            android:label="@string/title_activity_gerenciar_produtos"
+            android:parentActivityName=".adm.activity.Main3Activity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+    </application>
+
+</manifest>
+

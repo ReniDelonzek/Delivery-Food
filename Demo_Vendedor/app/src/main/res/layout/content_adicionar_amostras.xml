@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="rd.com.vendedor.adm.activity.Adicionar_amostras"
+    tools:showIn="@layout/activity_adicionar_amostras">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/input_titulo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginEnd="25dp"
+            android:layout_marginLeft="28dp"
+            android:layout_marginRight="25dp"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="19dp">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/titulo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Titulo"
+                android:inputType="textCapSentences|textAutoCorrect" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/input_layout_url"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/input_titulo"
+            android:layout_alignRight="@+id/abrir_img"
+            android:layout_alignStart="@+id/input_titulo"
+            android:layout_below="@+id/input_titulo"
+            android:layout_marginTop="25dp"
+            android:layout_toLeftOf="@+id/abrir_img"
+            android:layout_toStartOf="@+id/abrir_img">
+
+            <android.support.design.widget.TextInputEditText
+                android:maxLines="3"
+                android:id="@+id/url"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Url imagem" />
+        </android.support.design.widget.TextInputLayout>
+
+        <Button
+            android:id="@+id/apagar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/input_titulo"
+            android:layout_alignLeft="@+id/input_layout_url"
+            android:layout_below="@+id/imageView6"
+            android:layout_alignRight="@+id/input_titulo"
+            android:layout_alignStart="@+id/input_layout_url"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="25dp"
+            android:background="@color/mb_red_dark"
+            android:foreground="?attr/selectableItemBackground"
+            android:text="Apagar"
+            android:textColor="@color/mb_white" />
+
+        <Spinner
+            android:layout_alignEnd="@id/input_titulo"
+            android:id="@+id/spinner2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/input_layout_url"
+            android:layout_alignStart="@+id/input_layout_url"
+            android:layout_below="@+id/input_layout_url"
+            android:layout_marginTop="30dp"
+            android:layout_alignRight="@id/input_titulo" />
+
+        <ImageButton
+            android:id="@+id/abrir_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/input_layout_url"
+            android:layout_alignEnd="@+id/input_titulo"
+            android:layout_alignRight="@+id/input_titulo"
+            android:layout_alignTop="@+id/input_layout_url"
+            android:background="@android:color/transparent"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:src="@drawable/ic_add_a_photo_black_36dp" />
+
+        <ImageView
+            android:layout_marginBottom="15dp"
+            android:minHeight="200dp"
+            android:maxHeight="300dp"
+            android:id="@+id/imageView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/abrir_img"
+            android:layout_alignLeft="@+id/spinner2"
+            android:layout_alignRight="@+id/abrir_img"
+            android:layout_alignStart="@+id/spinner2"
+            android:layout_below="@+id/spinner2"
+            android:layout_marginTop="15dp"
+            android:scaleType="centerCrop" />
+
+    </RelativeLayout>
+</android.support.v4.widget.NestedScrollView>

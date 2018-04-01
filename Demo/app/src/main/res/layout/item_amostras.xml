@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cardview"
+    app:cardElevation="0dp"
+    android:layout_margin="5dp">
+    <RelativeLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:foreground="?attr/selectableItemBackground"
+        android:orientation="vertical"
+        android:focusable="true">
+
+        <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="150dp"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/item"
+                android:cropToPadding="true"
+                android:maxHeight="180dp"
+                android:maxWidth="200dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/cartao" />
+
+        <TextView
+            android:layout_marginLeft="7dp"
+            android:id="@+id/titulo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/imageView"
+            android:layout_marginRight="7dp"
+            android:layout_marginTop="16dp"
+            android:layout_toLeftOf="@+id/preco"
+            android:layout_toStartOf="@+id/preco"
+            android:maxLines="2"
+            android:text="@string/item"
+            android:textAlignment="viewStart"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:gravity="start" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/edit"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_alignBottom="@+id/titulo"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="25dp"
+            android:layout_marginEnd="14dp"
+            android:layout_marginRight="14dp"
+            android:text="Button"
+            app:backgroundTint="@color/colorAccent"
+            app:srcCompat="@drawable/ic_favorite_border_white_36dp" />
+
+        <TextView
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="1dp"
+            android:layout_marginRight="12dp"
+            android:id="@+id/text_quantidade"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/titulo"
+            android:layout_alignStart="@+id/titulo"
+            android:layout_below="@+id/titulo"
+            android:layout_toLeftOf="@+id/preco"
+            android:layout_toStartOf="@+id/preco"
+            android:text="Quantidade"
+            android:layout_marginEnd="12dp" />
+
+        <TextView
+            android:id="@+id/preco"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/edit"
+            android:layout_alignRight="@+id/edit"
+            android:layout_below="@+id/edit"
+            android:layout_marginBottom="5dp"
+            android:text="R$ 2.50"
+            android:textColor="#000"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
+</android.support.v7.widget.CardView>

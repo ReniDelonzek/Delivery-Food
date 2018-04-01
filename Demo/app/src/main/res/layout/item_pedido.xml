@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView android:layout_width="match_parent"
+    android:layout_margin="4dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="5dp"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:foreground="?attr/selectableItemBackground">
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/relativeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:foreground="?attr/selectableItemBackground">
+
+        <TextView
+            android:id="@+id/titulo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginEnd="15dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="15dp"
+            android:layout_toLeftOf="@+id/data"
+            android:layout_toStartOf="@+id/data"
+            android:text="Titulo"
+            android:textColor="@color/cardview_dark_background"
+            android:textSize="18sp" />
+
+        <TextView
+            android:layout_marginTop="15dp"
+            android:id="@+id/status_bar"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/confirmar"
+            android:background="@color/primaryTextColor" />
+
+        <TextView
+            android:id="@+id/data"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignTop="@+id/titulo"
+            android:layout_marginRight="15dp"
+            android:text="29/11/2018"
+            android:textSize="16sp"
+            android:textStyle="italic" />
+
+        <TextView
+            android:id="@+id/endereco"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/titulo"
+            android:layout_alignLeft="@+id/titulo"
+            android:layout_alignRight="@+id/titulo"
+            android:layout_alignStart="@+id/titulo"
+            android:layout_below="@+id/titulo"
+            android:layout_marginBottom="15dp"
+            android:layout_marginTop="5dp"
+            android:text="Linha Fartura" />
+
+        <TextView
+            android:id="@+id/status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/endereco"
+            android:layout_alignStart="@+id/endereco"
+            android:layout_below="@id/endereco"
+            android:layout_marginBottom="5dp"
+            android:text="Pedido Pronto!"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:background="@color/primaryLightColor"
+            android:text="Cancelar"
+            android:id="@+id/cancelar"
+            android:layout_alignRight="@+id/data"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/status"
+            android:layout_below="@+id/status"
+            android:layout_alignEnd="@+id/data"
+            android:layout_alignStart="@+id/status" />
+        <Button
+            android:layout_marginTop="5dp"
+            android:textColor="#fff"
+            android:text="Confirmar"
+            android:background="@color/colorAccent"
+            android:id="@+id/confirmar"
+            android:layout_alignRight="@+id/data"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/status"
+            android:layout_below="@+id/cancelar"
+            android:layout_alignEnd="@+id/data"
+            android:layout_alignStart="@+id/status" />
+
+    </RelativeLayout>
+</android.support.v7.widget.CardView>
