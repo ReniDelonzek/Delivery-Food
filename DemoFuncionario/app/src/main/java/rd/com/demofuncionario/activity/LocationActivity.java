@@ -54,8 +54,8 @@ public class LocationActivity extends AppCompatActivity {
 
                             //obtém a última localização conhecida
                             mLastLocation = task.getResult();
-                            Toast.makeText(getApplicationContext(), "Latitude: " + String.valueOf(mLastLocation.getLatitude()) +
-                            "Longitude: " + String.valueOf(mLastLocation.getLongitude()), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), "Latitude: " + mLastLocation.getLatitude() +
+                            "Longitude: " + mLastLocation.getLongitude(), Toast.LENGTH_SHORT).show();
 
                         } else {
                             Toast.makeText(getApplicationContext(), "Falha ao recuperar as info", Toast.LENGTH_SHORT).show();

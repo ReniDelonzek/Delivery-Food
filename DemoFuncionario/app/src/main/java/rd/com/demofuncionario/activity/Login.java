@@ -331,7 +331,7 @@ public class Login extends AppCompatActivity {
         }
     }
     public boolean validateEmail(String email) {
-        final String EMAIL_PATTERN = "^[a-zA-Z0-9#_~!$&'()*+,;=:.\"<>@\\[\\]\\\\]+@[a-zA-Z0-9-]+(\\.[a-zA-Z0-9-]+)*$";
+        final String EMAIL_PATTERN = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$";
         Pattern pattern = Pattern.compile(EMAIL_PATTERN);
         Matcher matcher;
         matcher = pattern.matcher(email);

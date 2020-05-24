@@ -3,19 +3,17 @@ package rd.com.demofuncionario.activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
-import android.graphics.Color;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
-import com.amulyakhare.textdrawable.TextDrawable;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -70,6 +68,7 @@ public class ConfirmarPedido extends AppCompatActivity {
             }
         });
     }
+
     private void dialog(String title, String msg, final int i) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
@@ -94,6 +93,7 @@ public class ConfirmarPedido extends AppCompatActivity {
         alerta.setMessage(msg);
         alerta.show();
     }
+
     private void atualizarPedido(String status, int statuscode, final String msg) {
         FirebaseFirestore.getInstance()
                 .collection("estabelecimentos")
@@ -148,6 +148,7 @@ public class ConfirmarPedido extends AppCompatActivity {
         });
 
     }
+
     private void notificar_usuario(final String title, final String ped) {
         new Thread() {
             @Override
@@ -207,6 +208,7 @@ public class ConfirmarPedido extends AppCompatActivity {
         }.start();
 
     }
+
     private String convertStreamToString(InputStream is) {
         Scanner s = new Scanner(is).useDelimiter("\\A");
         return s.hasNext() ? s.next().replace(",", ",\n") : "";

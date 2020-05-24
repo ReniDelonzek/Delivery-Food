@@ -13,27 +13,28 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".adm.activity.Main3Activity"
+            android:name=".adm.activity.MainActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".adm.activity.Adicionar_produtos"
-            android:parentActivityName=".adm.activity.Main3Activity"
+            android:parentActivityName=".adm.activity.MainActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".adm.activity.Adcionar_categoria"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".adm.activity.Adicionar_amostras"
-            android:parentActivityName=".adm.activity.Main3Activity"
+            android:parentActivityName=".adm.activity.MainActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".adm.activity.Escolher_amostra"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".adm.activity.Pedidos"
-            android:parentActivityName=".adm.activity.Main3Activity"
+            android:parentActivityName=".adm.activity.MainActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".adm.activity.Login" />
+        <activity android:name=".adm.activity.EditarDetalhes"/>
         <activity
             android:name=".adm.activity.Adc_funcionario"
             android:label="@string/title_activity_adc_funcionario"
@@ -42,7 +43,7 @@
         <activity
             android:name=".adm.activity.Gerenciar_funcionarios"
             android:label="@string/title_activity_gerir_funcionarios"
-            android:parentActivityName=".adm.activity.Main3Activity"
+            android:parentActivityName=".adm.activity.MainActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".adm.activity.ReAutenticar"
@@ -57,7 +58,7 @@
         <activity
             android:name=".adm.activity.GerenciarProdutos"
             android:label="@string/title_activity_gerenciar_produtos"
-            android:parentActivityName=".adm.activity.Main3Activity"
+            android:parentActivityName=".adm.activity.MainActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 

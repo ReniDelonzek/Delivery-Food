@@ -38,10 +38,10 @@ public class NotaPdf extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nota_pdf);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -116,7 +116,7 @@ public class NotaPdf extends AppCompatActivity {
 
             if (totalpages > 0) {
                 PrintDocumentInfo.Builder builder = new PrintDocumentInfo
-                        .Builder("nota" + String.valueOf(totalpages) +".pdf")
+                        .Builder("nota" + totalpages +".pdf")
                         .setContentType(PrintDocumentInfo.CONTENT_TYPE_DOCUMENT)
                         .setPageCount(totalpages);
 
