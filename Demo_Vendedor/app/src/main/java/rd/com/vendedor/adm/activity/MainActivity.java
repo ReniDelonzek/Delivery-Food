@@ -6,22 +6,20 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.util.Log;
-import android.view.View;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ArrayAdapter;
+import android.view.View;
 import android.widget.ProgressBar;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -39,16 +37,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import rd.com.vendedor.R;
-import rd.com.vendedor.adm.adapter.Adapter_Ammostras;
+import rd.com.vendedor.adm.adapter.AdapterAmostras;
 import rd.com.vendedor.adm.item.Amostras;
 import rd.com.vendedor.adm.item.UserAdm;
 import rd.com.vendedor.adm.utils.Constants;
 
-import static com.google.firebase.firestore.DocumentChange.Type.ADDED;
-import static com.google.firebase.firestore.DocumentChange.Type.MODIFIED;
-import static com.google.firebase.firestore.DocumentChange.Type.REMOVED;
-
-public class Main3Activity extends AppCompatActivity
+public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private static final String TAG = "MainActivity";
@@ -84,8 +78,6 @@ public class Main3Activity extends AppCompatActivity
             tipoEstabelecimento = sharedPreferences.getString(Constants.tipoEstabelecimento, "");
             cidadecode = sharedPreferences.getString(Constants.cidadeCode, "");
             cidade = sharedPreferences.getString(Constants.cidade, "");
-
-
             nome = sharedPreferences.getString(Constants.nome, "");
 
             verif_adm();
@@ -118,7 +110,7 @@ public class Main3Activity extends AppCompatActivity
             });
             progressBar = findViewById(R.id.progressBar);
             recyclerView = findViewById(R.id.recyclerView);
-            adapter = new Adapter_Ammostras(produtos);
+            adapter = new AdapterAmostras(produtos);
             layoutManager = new LinearLayoutManager(getApplicationContext());
             recyclerView.setLayoutManager(layoutManager);
             recyclerView.setAdapter(adapter);
@@ -140,7 +132,7 @@ public class Main3Activity extends AppCompatActivity
                 .collection("info")
                 .document("Adm")
                 .collection("ids")
-                .document(FirebaseAuth.getInstance().getUid())
+                .document(FirebaseAuth.getInstance().getCurrentUser().getUid())
                 .get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
@@ -164,7 +156,7 @@ public class Main3Activity extends AppCompatActivity
 
                     editor.putString(Constants.nome, userAdm.getNome()).apply();
                     editor.putString(Constants.sobrenome, userAdm.getSobrenome()).apply();
-                    editor.putString(Constants.id, FirebaseAuth.getInstance().getUid()).apply();
+                    editor.putString(Constants.id, FirebaseAuth.getInstance().getCurrentUser().getUid()).apply();
                     editor.putString(Constants.cargo, userAdm.getCargo()).apply();
                 } else {
                     FirebaseAuth.getInstance().signOut();
@@ -300,7 +292,7 @@ public class Main3Activity extends AppCompatActivity
 
                             } else {
                                 progressBar.setVisibility(View.GONE);
-                                Snackbar.make(recyclerView, "Adicione sua primeira amostracode clicando no botão +", Snackbar.LENGTH_INDEFINITE).show();
+                                Snackbar.make(recyclerView, "Adicione sua primeira amostra clicando no botão +", Snackbar.LENGTH_INDEFINITE).show();
                             }
                         }
                     });
@@ -360,7 +352,6 @@ public class Main3Activity extends AppCompatActivity
                     });
         }
     }
-
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -375,18 +366,6 @@ public class Main3Activity extends AppCompatActivity
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main3, menu);
-
-        /*
-        MenuItem item = menu.findItem(R.id.spinner);
-        Spinner spinner = (Spinner) item.getActionView();
-
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                R.array.spinner_list_item_array_lachonetes, android.R.layout.simple_spinner_item);
-
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        spinner.setAdapter(adapter);
-        */
         return true;
     }
 
@@ -470,6 +449,11 @@ public class Main3Activity extends AppCompatActivity
                 intent.putExtra(Constants.cidadeCode, cidadecode);
                 intent.putExtra(Constants.cidade, cidade);
                 startActivity(intent);
+                break;
+
+            case R.id.preco_entrega:
+                Intent in = new Intent(getApplicationContext(), EditarDetalhes.class);
+                startActivity(in);
                 break;
             case R.id.mudar_conta:
                 FirebaseAuth.getInstance().signOut();

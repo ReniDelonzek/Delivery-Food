@@ -127,8 +127,8 @@ public class SnapAdapterListaEstabelecimentos extends RecyclerView.Adapter<Recyc
         ViewHolder(View itemView) {
             super(itemView);
             progressBar = itemView.findViewById(R.id.progressBar);
-            snapTextView = (TextView) itemView.findViewById(R.id.snapTextView);
-            recyclerView = (RecyclerView) itemView.findViewById(R.id.recyclerView);
+            snapTextView = itemView.findViewById(R.id.snapTextView);
+            recyclerView = itemView.findViewById(R.id.recyclerView);
             carregando = itemView.findViewById(R.id.carregando);
         }
 
@@ -141,7 +141,7 @@ public class SnapAdapterListaEstabelecimentos extends RecyclerView.Adapter<Recyc
         ViewHolder_Estabelecimentos(View itemView) {
             super(itemView);
             progressBar = itemView.findViewById(R.id.progressBar);
-            recyclerView = (RecyclerView) itemView.findViewById(R.id.recyclerView);
+            recyclerView = itemView.findViewById(R.id.recyclerView);
             carregando = itemView.findViewById(R.id.carregando);
 
         }

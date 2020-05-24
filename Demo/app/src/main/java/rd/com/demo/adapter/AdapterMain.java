@@ -17,19 +17,24 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
+import java.io.Serializable;
 import java.util.List;
+import java.util.Locale;
 
 import rd.com.demo.R;
-import rd.com.demo.activity.ListaEstabelecimentos;
 import rd.com.demo.activity.DetalhesAmostra;
+import rd.com.demo.activity.DetalhesProduto;
+import rd.com.demo.activity.ListaEstabelecimentos;
 import rd.com.demo.activity.ListaProdutosCategorias;
 import rd.com.demo.activity.MainActivity;
 import rd.com.demo.auxiliares.Constants;
 import rd.com.demo.banco.sugarOs.AmostrasFavoritasDB;
+import rd.com.demo.banco.sugarOs.Carinho_itemDB;
 import rd.com.demo.item.firebase.Amostras;
 import rd.com.demo.item.firebase.Estabelecimento;
 import rd.com.demo.item.firebase.Item_Imagem;
 import rd.com.demo.item.firebase.Lista_Opcoes;
+import rd.com.demo.item.firebase.Produto;
 
 
 public class AdapterMain extends RecyclerView.Adapter {
@@ -67,6 +72,10 @@ public class AdapterMain extends RecyclerView.Adapter {
             viewHolder = new ViewHolderSearch(
                     LayoutInflater.from(parent.getContext())
                             .inflate(R.layout.item_pesquisa, parent, false));
+        } else if (type == 5){
+            viewHolder = new Holder_Amostras(
+                    LayoutInflater.from(parent.getContext())
+                            .inflate(R.layout.item_amostras, parent, false));
         }
         return viewHolder;
     }
@@ -75,10 +84,12 @@ public class AdapterMain extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(final RecyclerView.ViewHolder viewHolder, int position) {
         if (viewHolder instanceof Holder_principal) {//adaptador para as categorias
+
             final Lista_Opcoes servicos = (Lista_Opcoes) list.get(position);
             final Holder_principal holder = (Holder_principal) viewHolder;
             holder.imageView.setImageResource(servicos.getDrawable());
             holder.nameTextView.setText(servicos.getName());
+            /*
             holder.linearLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {//trata do clique em um item das categorias
@@ -89,7 +100,7 @@ public class AdapterMain extends RecyclerView.Adapter {
                     holder.linearLayout.getContext().startActivity(intent);
                 }
             });
-
+*/
         } else if (viewHolder instanceof Holder_Header){//adaptador para as promoções do topo
             Item_Imagem header = (Item_Imagem) list.get(position);
             final Holder_Header holderHeader = (Holder_Header) viewHolder;
@@ -102,7 +113,8 @@ public class AdapterMain extends RecyclerView.Adapter {
                 }
             });
 
-        } else if (viewHolder instanceof Holder_Amostras) {//adaptador para os produtos
+        } else if (viewHolder instanceof Holder_Amostras) {//adaptador para os amostras
+            /*
             progressBar.setVisibility(View.GONE);
             final Amostras produto = (Amostras) list.get(position);
             final Holder_Amostras holder = (Holder_Amostras) viewHolder;
@@ -114,8 +126,9 @@ public class AdapterMain extends RecyclerView.Adapter {
                 string = produto.getQuantidade() + " opções";
             }
             holder.descricao.setText(string);
-            Picasso.with(holder.imageView.getContext()).
-                    load(produto.getUrl()).into(holder.imageView);
+            //Picasso.with(holder.imageView.getContext()).
+              //      load(produto.getUrl()).into(holder.imageView);
+            holder.imageView.setImageResource(R.drawable.carne_vermelha);
             holder.relativeLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -127,9 +140,9 @@ public class AdapterMain extends RecyclerView.Adapter {
                     v.getContext().startActivity(intent);
                 }
             });
-            if (MainActivity.amostrasFavoritasDB.contains(produto.getCaminho())){
-                holder.favoritar.setImageResource(R.drawable.ic_favorite_white_36dp);
-            }
+//            if (MainActivity.amostrasFavoritasDB.contains(produto.getCaminho())){
+  //              holder.favoritar.setImageResource(R.drawable.ic_favorite_white_36dp);
+   ///         }
             holder.preco.setVisibility(View.GONE);
             holder.favoritar.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -152,12 +165,35 @@ public class AdapterMain extends RecyclerView.Adapter {
                     }
                 }
             });
+            */
+            progressBar.setVisibility(View.GONE);
+            final Produto produto = (Produto) list.get(position);
+            final Holder_Amostras holder = (Holder_Amostras) viewHolder;
+            holder.imageView.setImageResource(produto.getCaminho());
+            holder.titulo.setText(produto.getNome());
+            holder.preco.setText(String.format(Locale.getDefault(), "R$%.2f", produto.getPreco()));
+
+            holder.favoritar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    adc_carinho(produto, v);
+                }
+            });
+            holder.relativeLayout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(v.getContext(), DetalhesProduto.class);
+                    intent.putExtra("produto", (Serializable) list.get(holder.getAdapterPosition()));
+                    v.getContext().startActivity(intent);
+
+                }
+            });
+
         } else  if (viewHolder instanceof HolderEstabelecimentos) {//adaptador para os estabelecimentos
             relativeLayout.setVisibility(View.VISIBLE);
             final Estabelecimento estabelecimento = (Estabelecimento) list.get(position);
             final HolderEstabelecimentos holder = (HolderEstabelecimentos) viewHolder;
             progressBar.setVisibility(View.GONE);
-            //textView.setVisibility(View.GONE);
             holder.nameTextView.setText(estabelecimento.getNome());
             Picasso.with(holder.imageView.getContext()).
                     load(estabelecimento.getUrl()).into(holder.imageView);
@@ -165,18 +201,42 @@ public class AdapterMain extends RecyclerView.Adapter {
             holder.linearLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {//trata do clique em um dos estabelecimentos
+                    /*
                     Intent intent = new Intent(v.getContext(), ListaProdutosCategorias.class);
                     intent.setAction("");
                     intent.putExtra("tipo", ListaEstabelecimentos.tipo);
                     intent.putExtra("id", estabelecimento.getId());
                     intent.putExtra("nome", estabelecimento.getNome());
-                    v.getContext().startActivity(intent);
+                    */
+                   // v.getContext().startActivity(intent);
                 }
             });
 
         } else if (viewHolder instanceof ViewHolderSearch){
 
         }
+    }
+    private void adc_carinho(Produto produto, View v) {
+        List<Carinho_itemDB> itensCarinho = Carinho_itemDB.find(Carinho_itemDB.class, "codigo = ? " +
+                        "and estabelecimentoid = ?",
+                produto.getCodigo(), produto.getEstabelecimento_id());//le todos os itens ja presentes no carinho
+
+        Long tsLong = System.currentTimeMillis()/1000;
+        String ts = tsLong.toString();
+        if (itensCarinho.isEmpty()){//nao existe nenhum pedido assim no carinho, adiciona um novo
+            Carinho_itemDB pedido = new Carinho_itemDB(produto.getNome(), produto.getDescricao(), produto.getTipo_estabelecimento(), produto.getEstabelecimento(),
+                    produto.getEstabelecimento_id(), produto.getCodigo(), produto.getUrl(), "1", String.valueOf(produto.getPreco()), ts, true, true, produto.getCidadecode(),
+                    produto.getCidade(), produto.getNomeamostra());
+            pedido.save();
+            Snackbar.make(v, "Produto adicionado ao Carrinho :)", Snackbar.LENGTH_SHORT).show();
+        } else if (itensCarinho.size() == 1){//o produto ja consta no carrinho, apenas adiciona mais um item
+            Carinho_itemDB carinhoitem1 = itensCarinho.get(0);
+            carinhoitem1.setQuantidade(String.valueOf(Integer.parseInt(carinhoitem1.getQuantidade()) + 1));
+            carinhoitem1.save();
+            Snackbar.make(v, String.valueOf(carinhoitem1.getQuantidade()) +
+                    " itens no carinho", Snackbar.LENGTH_SHORT).show();
+        }
+
     }
     @Override
     public int getItemCount() {
@@ -192,13 +252,13 @@ public class AdapterMain extends RecyclerView.Adapter {
         Holder_principal(View itemView) {
             super(itemView);
             linearLayout =  itemView.findViewById(R.id.linearLayout);
-            imageView = (ImageView) itemView.findViewById(R.id.imageView);
-            nameTextView = (TextView) itemView.findViewById(R.id.titulo);
+            imageView = itemView.findViewById(R.id.imageView);
+            nameTextView = itemView.findViewById(R.id.titulo);
         }
     }
     private class Holder_Header extends RecyclerView.ViewHolder implements View.OnClickListener {//holder anuncios topo
         private final ImageView imageView;
-        private final CardView cardView; 
+        private final CardView cardView;
         Holder_Header(View itemView) {
             super(itemView);
             itemView.setOnClickListener(this);
@@ -243,8 +303,8 @@ public class AdapterMain extends RecyclerView.Adapter {
         HolderEstabelecimentos(View itemView) {
             super(itemView);
             linearLayout =  itemView.findViewById(R.id.linearLayout);
-            imageView = (ImageView) itemView.findViewById(R.id.imageView);
-            nameTextView = (TextView) itemView.findViewById(R.id.titulo);
+            imageView = itemView.findViewById(R.id.imageView);
+            nameTextView = itemView.findViewById(R.id.titulo);
         }
     }
     private  class ViewHolderSearch extends RecyclerView.ViewHolder {

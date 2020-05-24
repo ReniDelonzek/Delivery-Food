@@ -12,6 +12,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -46,23 +48,10 @@ public class Carinho extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (empty){//carinho vazio
-                    finish();
+                if (FirebaseAuth.getInstance().getCurrentUser() == null){
+                    startActivityForResult(new Intent(getApplicationContext(), ComecarCadastro.class), 1);
                 } else {
-                    Carinho_itemDB comprar = checar_marcados();
-                    if (comprar != null) {
-                        if (single) {//essa variavel tem a info se o cliente esta comprando apenas de um unico estabelecimento
-                            Intent intent = new Intent(getApplicationContext(), ConfirmacaoCompra.class);
-                            intent.putExtra("pedido", comprar);
-                            intent.setAction("comprar");
-                            intent.putExtra("type", "buyAll");
-                            startActivity(intent);
-                        } else {//caso não, alerta-o sobre isso
-                            Snackbar.make(view, "Sorry, Você pode comprar de apenas de um estabelecimento por vez", Snackbar.LENGTH_SHORT).show();
-                        }
-                    } else {
-                        Snackbar.make(view, "Por favor marque os itens que deseja comprar", Snackbar.LENGTH_SHORT).show();
-                    }
+                    iniciarPedido();
                 }
             }
         });
@@ -77,6 +66,27 @@ public class Carinho extends AppCompatActivity {
         carregar_itens();
     }
 
+    private void iniciarPedido() {
+        if (empty){//carinho vazio
+            finish();
+        } else {
+            Carinho_itemDB comprar = checar_marcados();
+            if (comprar != null) {
+                if (single) {//essa variavel tem a info se o cliente esta comprando apenas de um unico estabelecimento
+                    Intent intent = new Intent(getApplicationContext(), ConfirmacaoCompra.class);
+                    intent.putExtra("pedido", comprar);
+                    intent.setAction("comprar");
+                    intent.putExtra("type", "buyAll");
+                    startActivity(intent);
+                } else {//caso não, alerta-o sobre isso
+                    Snackbar.make(recyclerView, "Sorry, Você pode comprar de apenas de um estabelecimento por vez", Snackbar.LENGTH_SHORT).show();
+                }
+            } else {
+                Snackbar.make(recyclerView, "Por favor marque os itens que deseja comprar", Snackbar.LENGTH_SHORT).show();
+            }
+        }
+    }
+
     private Carinho_itemDB checar_marcados() {
         Carinho_itemDB carinhoitemList = null;
         for(int i = 0; i < list.size(); i++){
@@ -87,7 +97,7 @@ public class Carinho extends AppCompatActivity {
                     carinhoitemList.setTitulo(list.get(i).getTitulo());
                     carinhoitemList.setDescricao(list.get(i).getDescricao());
                     carinhoitemList.setUrl(list.get(i).getUrl());
-                    carinhoitemList.setid(list.get(i).getid());
+                    carinhoitemList.setIddata(list.get(i).getId().toString());
                     carinhoitemList.setEstabelecimento(list.get(i).getEstabelecimento());
                     carinhoitemList.setCodigo(list.get(i).getCodigo());
                     carinhoitemList.setPreco(list.get(i).getPreco());
@@ -99,21 +109,16 @@ public class Carinho extends AppCompatActivity {
                     carinhoitemList.setNomeamostra(list.get(i).getNomeamostra());
 
                 } else {
-                    if (carinhoitemList.getid().equals(list.get(i).getid())) {
+                    if (carinhoitemList.getEstabelecimentoid().equals(list.get(i).getEstabelecimentoid())) {
+
                         carinhoitemList.setTitulo(carinhoitemList.getTitulo() + "¨" + list.get(i).getTitulo());
                         carinhoitemList.setDescricao(carinhoitemList.getDescricao() + "¨" + list.get(i).getDescricao());
                         carinhoitemList.setUrl(carinhoitemList.getUrl() + "¨" + list.get(i).getUrl());
-                        carinhoitemList.setid(carinhoitemList.getid() + "¨" + list.get(i).getid());
-                        carinhoitemList.setEstabelecimento(carinhoitemList.getEstabelecimento() + "¨" + list.get(i).getEstabelecimento());
+                        carinhoitemList.setIddata(carinhoitemList.getId() + "¨" + list.get(i).getId());
                         carinhoitemList.setCodigo(carinhoitemList.getCodigo() + "¨" + list.get(i).getCodigo());
                         carinhoitemList.setPreco(carinhoitemList.getPreco() + "¨" + list.get(i).getPreco());
                         carinhoitemList.setQuantidade(carinhoitemList.getQuantidade() + "¨" + list.get(i).getQuantidade());
-                        carinhoitemList.setQuantidade(carinhoitemList.getNomeamostra() + "¨" + list.get(i).getNomeamostra());
-
-                        carinhoitemList.setTipoestabelecimento(list.get(i).getTipoestabelecimento());
-                        carinhoitemList.setEstabelecimentoid(list.get(i).getEstabelecimentoid());
-                        carinhoitemList.setCidade(list.get(i).getCidade());
-                        carinhoitemList.setCidadecode(list.get(i).getCidadecode());
+                        carinhoitemList.setNomeamostra(carinhoitemList.getNomeamostra() + "¨" + list.get(i).getNomeamostra());
                     } else {
                         single = false;
                         i = list.size();//finaliza o loop
@@ -141,7 +146,8 @@ public class Carinho extends AppCompatActivity {
 
     private void ler_pedidos_estabelecimento() {
         for(int i = 0; i < listestabelecimentos.size(); i++){
-            list.addAll(Carinho_itemDB.find(Carinho_itemDB.class, "estabelecimentoid = ?", listestabelecimentos.get(i) ));
+            list.addAll(Carinho_itemDB.find(Carinho_itemDB.class, "estabelecimentoid = ?",
+                    listestabelecimentos.get(i) ));
             adapter.notifyItemInserted(list.size() - 1);
             //le de cada estabelecimento separado para deixar os itens organizados de acordo com o estabelecimento
         }
@@ -149,14 +155,24 @@ public class Carinho extends AppCompatActivity {
     }
 
     private void separar_estabelecimentos(List<Carinho_itemDB> todosOsItens) {
-        listestabelecimentos.add(todosOsItens.get(0).getid());//pega o id do estabelecimento do primeiro item
+        listestabelecimentos.add(String.valueOf(todosOsItens.get(0).getEstabelecimentoid()));//pega o id do estabelecimento do primeiro item
         for(int i = 1; i < todosOsItens.size(); i++){
-            if (!listestabelecimentos.contains(todosOsItens.get(i).getid())){
-                listestabelecimentos.add(todosOsItens.get(i).getid());
+            if (!listestabelecimentos.contains(String.valueOf(todosOsItens.get(i).getEstabelecimentoid()))){
+                listestabelecimentos.add(String.valueOf(todosOsItens.get(i).getEstabelecimentoid()));
                 Log.v(TAG, listestabelecimentos.get(listestabelecimentos.size()- 1));
             }
         }
 
     }
-
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        // Check which request we're responding to
+        if (requestCode == 1){//resultado da tela de login
+            if (FirebaseAuth.getInstance().getCurrentUser() == null) {
+                Snackbar.make(recyclerView, "Você não pode realizar compras se não criar uma conta no nosso serviço", Snackbar.LENGTH_SHORT).show();
+            } else {
+                iniciarPedido();
+            }
+        }
+    }
 }

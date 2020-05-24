@@ -1,8 +1,5 @@
 package rd.com.vendedor.adm.utils;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * Created by Reni on 11/02/2018.
  */
@@ -13,6 +10,7 @@ public interface Constants {
     String tipoEstabelecimento = "estabelecimentotipo";
     String cidadeCode = "cidadecode";
     String cidade = "cidade";
+    String caminho = "caminho";
 
     String lanchonetes = "lanchonetes";
     String restaurantes = "restaurantes";

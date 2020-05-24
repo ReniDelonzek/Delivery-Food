@@ -10,16 +10,15 @@ import java.util.List;
 
 import rd.com.vendedor.R;
 import rd.com.vendedor.adm.item.Funcionario;
-import rd.com.vendedor.adm.item.Pedidos;
 
 /**
  * Created by Reni on 15/02/2018.
  */
 
-public class Adapter_Funcionarios extends RecyclerView.Adapter {
+public class AdapterFuncionarios extends RecyclerView.Adapter {
     private List<Funcionario> list;
 
-    public Adapter_Funcionarios(List<Funcionario> objects) {
+    public AdapterFuncionarios(List<Funcionario> objects) {
         list = objects;
     }
 

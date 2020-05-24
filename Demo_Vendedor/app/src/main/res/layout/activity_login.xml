@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="rd.com.vendedor.adm.activity.Login">
+    tools:context="rd.com.pediupagouvendedor.activity.Login">
 
     <android.support.design.widget.TextInputLayout
         android:layout_marginBottom="15dp"

@@ -3,9 +3,9 @@ package rd.com.vendedor.adm.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.Toast;
@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import rd.com.vendedor.R;
-import rd.com.vendedor.adm.adapter.Adapter_selecionar_amostra;
+import rd.com.vendedor.adm.adapter.AdapterSelecionarAmostra;
 import rd.com.vendedor.adm.item.Amostras;
 import rd.com.vendedor.adm.utils.Constants;
 
@@ -47,7 +47,7 @@ public class Escolher_amostra extends AppCompatActivity {
         recyclerView = findViewById(R.id.recyclerView);
         amostras = new ArrayList<>();
         GridLayoutManager layoutManager = new GridLayoutManager(getApplicationContext(), 2);
-        adapter = new  Adapter_selecionar_amostra(amostras, new Adapter_selecionar_amostra.OnItemClickListener() {
+        adapter = new AdapterSelecionarAmostra(amostras, new AdapterSelecionarAmostra.OnItemClickListener() {
             @Override
             public void onItemClick(Amostras item) {
                 Toast.makeText(getApplicationContext(), "Amostra selecionada", Toast.LENGTH_SHORT).show();

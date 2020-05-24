@@ -3,16 +3,12 @@ package rd.com.demo.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 
-import rd.com.demo.R;
 import rd.com.demo.banco.sugarOs.Carinho_itemDB;
 
 public class Wellcome_activity extends AppCompatActivity {
@@ -24,7 +20,7 @@ public class Wellcome_activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         SharedPreferences sharedPreferences = getSharedPreferences("INIT", Context.MODE_PRIVATE);
         if (sharedPreferences.getBoolean("primeira_vez", false)) {
-            ;//verifica se o usuario ja passou nessa tela
+            //verifica se o usuario ja passou nessa tela
             //se ja, chama a MainActivity
             startActivity(new Intent(getApplicationContext(), MainActivity.class));
             finish();

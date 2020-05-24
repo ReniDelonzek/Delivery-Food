@@ -9,36 +9,30 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.util.Log;
-import android.view.View;
-import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.facebook.login.LoginManager;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QuerySnapshot;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -50,11 +44,11 @@ import rd.com.demo.adapter.SnapAdapterMain;
 import rd.com.demo.auxiliares.Constants;
 import rd.com.demo.auxiliares.LibraryClass;
 import rd.com.demo.banco.sugarOs.AmostrasFavoritasDB;
+import rd.com.demo.item.Snap_Item;
 import rd.com.demo.item.firebase.Amostras;
 import rd.com.demo.item.firebase.Estabelecimento;
-import rd.com.demo.item.firebase.Item_Imagem;
 import rd.com.demo.item.firebase.Lista_Opcoes;
-import rd.com.demo.item.Snap_Item;
+import rd.com.demo.item.firebase.Produto;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -95,23 +89,27 @@ public class MainActivity extends AppCompatActivity
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.setHasFixedSize(false);
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-        amostrasFavoritasDB = new ArrayList<>();
-        carregarAmostrasFavoritas();
+        //amostrasFavoritasDB = new ArrayList<>();
+        //carregarAmostrasFavoritas();
 
         addServicos();
+        //addAmostras();
+        addProdutos();
         setupAdapter();
+        setTitle("MerCasa");
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //startActivity(new Intent(getApplicationContext(), MapsActivity.class));
                 startActivity(new Intent(getApplicationContext(), Carinho.class));
             }
         });
-        //adionar_estabelecimentos();
 
+        /*
         SharedPreferences sharedPreferences = getSharedPreferences("Login", Context.MODE_PRIVATE);
         cidadecode = sharedPreferences.getString(Constants.cidadecode, "");
         cidade = sharedPreferences.getString(Constants.cidade, "");
@@ -135,6 +133,9 @@ public class MainActivity extends AppCompatActivity
                 finish();
             }
         });
+*/
+
+
     }
 
     private void carregarAmostrasFavoritas() {
@@ -147,89 +148,44 @@ public class MainActivity extends AppCompatActivity
             }
         }).start();
     }
-
-    private void adionar_estabelecimentos() {
-        Estabelecimento estabelecimento = new Estabelecimento("PediuPagou", "restaurante1", "https://u.tfstatic.com/restaurant_photos/585/69585/169/612/das-restaurante-salle-du-restaurant-6c14c.jpg",
-                "Das 10 da manhã até as 11 da noite", "Rua dos Expedicionários", "Slogan", "restaurante1", "-26.018048, -51.351256");
-        estabelecimento.setCidadecode("84623000");
-        String id = FirebaseDatabase.getInstance().getReference().child("Estabelecimentos")
-                .child("restaurantes").push().getKey();
-        FirebaseDatabase.getInstance().getReference()
-                .child("Estabelecimentos")
-                .child("restaurantes")
-                .child(id)
-                .setValue(estabelecimento);
-
-        FirebaseDatabase.getInstance().getReference()
-                .child("Estabelecimentos")
-                .child("restaurantes")
-                .child(id)
-                .child("mesas")
-                .push()
-                .setValue("Mesa 01");
-        FirebaseDatabase.getInstance().getReference()
-                .child("Estabelecimentos")
-                .child("restaurantes")
-                .child(id)
-                .child("mesas")
-                .push()
-                .setValue("Mesa 02");
-        FirebaseDatabase.getInstance().getReference()
-                .child("Estabelecimentos")
-                .child("restaurantes")
-                .child(id)
-                .child("mesas")
-                .push()
-                .setValue("Mesa 03");
-        FirebaseDatabase.getInstance().getReference()
-                .child("Estabelecimentos")
-                .child("restaurantes")
-                .child(id)
-                .child("mesas")
-                .push()
-                .setValue("Mesa 04");
-        FirebaseDatabase.getInstance().getReference()
-                .child("Estabelecimentos")
-                .child("restaurantes")
-                .child(id)
-                .child("mesas")
-                .push()
-                .setValue("Mesa 05");
-        FirebaseDatabase.getInstance().getReference()
-                .child("Estabelecimentos")
-                .child("restaurantes")
-                .child(id)
-                .child("mesas")
-                .push()
-                .setValue("Mesa 06");
-
-    }
     private void setupAdapter() {
         //list.add("");
         //snapAdapter.addSnap(new Snap_Item(4, "", list, false));//pesquisa
         snapAdapter.addSnap(new Snap_Item(1, "Categorias", list2, true));
-        snapAdapter.addSnap(new Snap_Item(3, "Restaurantes", list3, true));
-        //snapAdapter.addSnap(new Snap_Item(3, "Lanchonetes", list4, true));
-        //snapAdapter.addSnap(new Snap_Item(3, "Sorveterias", list5, true));
+        //snapAdapter.addSnap(new Snap_Item(2, "Destaques", list3, true));
+        snapAdapter.addSnap(new Snap_Item(5, "Destaques", list4, true));
 
         mRecyclerView.setAdapter(snapAdapter);
     }
-
-    private void addItens() {
-        list.add(new Item_Imagem("http://www.maumauburger.com.br/media/cache/9f/be/9fbe3b1508a28e8f07fc6c8abb14fb1f.jpg"));
-        list.add(new Item_Imagem("http://www.campinas.com.br/sites/default/files/styles/large/public/abbraccio-promocoes.jpg?itok=tyk8Jygd"));
-        list.add(new Item_Imagem("https://www.testapramim.com.br/wp-content/uploads/2017/03/novo-original-mex-mc-donalds-meramente-ilustrativo.png"));
-
-    }
     private void addServicos(){
-        list2.add(new Lista_Opcoes("Restaurantes", R.drawable.restaurant_icon_rosa, "", 1));
-        list2.add(new Lista_Opcoes("Lanchonetes", R.drawable.lanches_icon, "", 2));
-        list2.add(new Lista_Opcoes("Sorveterias", R.drawable.sorveteria_green, "", 3));
+        list2.add(new Lista_Opcoes("Higiene", R.drawable.sup, "", 1));
+        list2.add(new Lista_Opcoes("Bebidas", R.drawable.lanches_icon, "", 2));
+        list2.add(new Lista_Opcoes("Alimentos", R.drawable.restaurant_icon_rosa, "", 3));
+
     }
+    private void addProdutos(){
+        list4.add(new Produto("00300", "Macarrão", "Carne bovina",
+                2.30, "8897654657", "Carnes", "76544", "MercaCasa", "987678",
+                "mercado", "http://www.infoescola.com/wp-content/uploads/2011/02/carne-vermelha-450x324.jpg",
+                "Cruz Machado", "6789", "67890", R.drawable.macarrao));
+        list4.add(new Produto("000", "Arroz", "Arroz Urbano",
+                1.20, "8897654657", "Carnes", "76544", "MercaCasa", "987678",
+                "mercado", "http://www.infoescola.com/wp-content/uploads/2011/02/carne-vermelha-450x324.jpg",
+                "Cruz Machado", "6789", "67890", R.drawable.arroz));
+        list4.add(new Produto("033000", "Feijão", "Carne bovina",
+                3.50, "8897654657", "Carnes", "76544", "MercaCasa", "987678",
+                "mercado", "http://www.infoescola.com/wp-content/uploads/2011/02/carne-vermelha-450x324.jpg",
+                "Cruz Machado", "6789", "67890", R.drawable.feijao));
+        list4.add(new Produto("0303000", "Sabão em pó", "Sabão Tixan",
+                6.00, "8897654657", "Carnes", "76544", "MercaCasa", "987678",
+                "mercado", "http://www.infoescola.com/wp-content/uploads/2011/02/carne-vermelha-450x324.jpg",
+                "Cruz Machado", "6789", "67890", R.drawable.sabao_em_po));
+
+    }
+    /*
     private void buscar_dados(){
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        db.collection("estabelecimentos")
-
+        db.collection("estabelecimentosdf")
                 .document("restaurantes")
                 .collection("amostras")//obter todos os itens
                 .get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
@@ -251,6 +207,7 @@ public class MainActivity extends AppCompatActivity
             }
         });
     }
+    */
     private void getRestaurantes(){
         FirebaseDatabase.getInstance().getReference()
                 .child("Estabelecimentos")
@@ -263,6 +220,9 @@ public class MainActivity extends AppCompatActivity
                         if (dataSnapshot.exists()) {
                             list3.add(dataSnapshot.getValue(Estabelecimento.class));
                             snapAdapter.notifyItemChanged(1);
+                            if (!snapAdapter.contains("Restaurantes")) {
+                                snapAdapter.addSnap(new Snap_Item(3, "Restaurantes", list3, true));
+                            }
                         }
                     }
 
@@ -302,6 +262,9 @@ public class MainActivity extends AppCompatActivity
                         if (dataSnapshot.exists()) {
                             list4.add(dataSnapshot.getValue(Estabelecimento.class));
                             snapAdapter.notifyItemChanged(2);
+                            if (!snapAdapter.contains("Lanchonetes")){
+                                snapAdapter.addSnap(new Snap_Item(3, "Lanchonetes", list4, true));
+                            }
                         } else {
                             Snackbar.make(mRecyclerView, "Nenhuma Lanchonete cadastrada", Snackbar.LENGTH_SHORT).show();
                         }
@@ -340,8 +303,13 @@ public class MainActivity extends AppCompatActivity
                 .addChildEventListener(new ChildEventListener() {
                     @Override
                     public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                        list5.add(dataSnapshot.getValue(Estabelecimento.class));
-                        snapAdapter.notifyItemChanged(3);
+                        if (dataSnapshot.exists()) {
+                            list5.add(dataSnapshot.getValue(Estabelecimento.class));
+                            snapAdapter.notifyItemChanged(3);
+                            if (!snapAdapter.contains("Sorveterias")) {
+                                snapAdapter.addSnap(new Snap_Item(3, "Sorveterias", list5, true));
+                            }
+                        }
                     }
 
                     @Override
@@ -371,7 +339,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
@@ -387,12 +355,18 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
+        if (id == R.id.suporte){
+            startActivity(new Intent(getApplicationContext(), Mensagem.class));
+        }
+        /*
         if (id == R.id.layoutType) {
             startActivity(new Intent(getApplicationContext(), VerificarTelefone.class));
             return true;
         } else if (id == R.id.action_search){
             Snackbar.make(mRecyclerView, "Aqui o usuario fará a pesquisa dos produtos", Snackbar.LENGTH_SHORT).show();
         }
+        */
+
         return super.onOptionsItemSelected(item);
     }
     @SuppressWarnings("StatementWithEmptyBody")
@@ -423,7 +397,7 @@ public class MainActivity extends AppCompatActivity
                 break;
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
@@ -431,17 +405,15 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         View header = navigationView.getHeaderView(0);
-        TextView nomeUsuario = (TextView) header.findViewById(R.id.nome);
-        CircleImageView imageView = (CircleImageView) header.findViewById(R.id.imageView);
-        RelativeLayout linearLayout = (RelativeLayout) header.findViewById(R.id.header_layout);
+        TextView nomeUsuario = header.findViewById(R.id.nome);
+        CircleImageView imageView = header.findViewById(R.id.imageView);
+        RelativeLayout linearLayout = header.findViewById(R.id.header_layout);
 
         linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (user == null){
                     startActivity(new Intent(context, ComecarCadastro.class));
-                } else {
-                    //startActivity(new Intent(context, Perfil.class));
                 }
             }
         });
@@ -455,7 +427,7 @@ public class MainActivity extends AppCompatActivity
                 }
             }
             nomeUsuario.setText(nome);
-            setTitle(String.format("Olá %s ☺", nome));
+            //setTitle(String.format("Olá %s ☺", nome));
 
             File imgFile = new File(Environment.getExternalStorageDirectory()
                     + File.separator + "Demo/Imagens/.profile.png");
@@ -464,19 +436,11 @@ public class MainActivity extends AppCompatActivity
             } else {
                 imageView.setImageResource(R.drawable.ic_account_circle_white_48dp);
             }
-            /*
-            imgFile = new File(Environment.getExternalStorageDirectory()
-                    + File.separator + "Demo/Imagens/.photocover.png");
-            if(imgFile.exists()){
-                fotoCapa.setImageDrawable(Drawable.createFromPath(imgFile.getAbsolutePath()));
-                nomeUsuario.setBackgroundColor(ContextCompat.getColor(
-                        context, R.color.quase_transp));;
-            }*/ //fundo da imagem
         } else {
             imageView.setImageResource(R.drawable.ic_account_circle_white_48dp);
             nomeUsuario.setText("Faça seu Login!");
             nomeUsuario.setBackgroundColor(ContextCompat.getColor(
-                    context, R.color.transparent));;
+                    context, R.color.transparent));
             //imageView.setVisibility(View.GONE);
         }
     }

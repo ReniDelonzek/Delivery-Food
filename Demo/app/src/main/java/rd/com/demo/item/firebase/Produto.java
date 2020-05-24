@@ -15,15 +15,26 @@ public class Produto implements Serializable{
     private String cidade;
     private String cidadecode;
     private String nomeamostra;
-
+    private int caminho;//caminho local da imagem em resources
 
     public Produto(){}
-    public Produto(String codigo, String nome, String descricao, double preco, String categoria){
+
+    public Produto(String codigo, String nome, String descricao, double preco, String time, String categoria, String amostra, String estabelecimento, String estabelecimento_id, String tipo_estabelecimento, String url, String cidade, String cidadecode, String nomeamostra, int caminho) {
         this.codigo = codigo;
-        this.descricao = descricao;
         this.nome = nome;
+        this.descricao = descricao;
         this.preco = preco;
+        this.time = time;
         this.categoria = categoria;
+        this.amostra = amostra;
+        this.estabelecimento = estabelecimento;
+        this.estabelecimento_id = estabelecimento_id;
+        this.tipo_estabelecimento = tipo_estabelecimento;
+        this.url = url;
+        this.cidade = cidade;
+        this.cidadecode = cidadecode;
+        this.nomeamostra = nomeamostra;
+        this.caminho = caminho;
     }
 
     public String getNomeamostra() {
@@ -117,6 +128,14 @@ public class Produto implements Serializable{
     }
     public void setPreco(double preco) {
         this.preco = preco;
+    }
+
+    public int getCaminho() {
+        return caminho;
+    }
+
+    public void setCaminho(int caminho) {
+        this.caminho = caminho;
     }
 }
 

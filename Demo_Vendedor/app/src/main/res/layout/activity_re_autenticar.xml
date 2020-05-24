@@ -10,7 +10,7 @@
         android:minWidth="200dp"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        tools:context="rd.com.vendedor.adm.activity.ReAutenticar">
+        tools:context="rd.com.pediupagouvendedor.activity.ReAutenticar">
 
         <TextView
             android:id="@+id/textView2"

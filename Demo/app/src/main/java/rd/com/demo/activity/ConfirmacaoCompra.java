@@ -55,8 +55,8 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.net.URL;
 import java.net.HttpURLConnection;
+import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -71,8 +71,8 @@ import de.hdodenhof.circleimageview.CircleImageView;
 import rd.com.demo.R;
 import rd.com.demo.adapter.AdapterConfirmacaoCompra;
 import rd.com.demo.auxiliares.Constants;
-import rd.com.demo.item.firebase.Endereco;
 import rd.com.demo.banco.sugarOs.Carinho_itemDB;
+import rd.com.demo.item.firebase.Endereco;
 import rd.com.demo.item.firebase.Estabelecimento;
 import rd.com.demo.item.firebase.Pedidos;
 
@@ -86,7 +86,7 @@ public class ConfirmacaoCompra extends AppCompatActivity {
     TextView cliente, textviewEndereco, complemento, precoTotal;
     RadioButton avista, cartao;
     Button pedir, alterar_endereco, add_cartao;
-    CardView  cardView_Endereco, cardView_Mesa;
+    CardView cardView_Endereco, cardView_Mesa;
     Carinho_itemDB carinhoitem;
     String token, id_pedido;
     ImageView img_local;
@@ -107,6 +107,9 @@ public class ConfirmacaoCompra extends AppCompatActivity {
     ProgressBar progressBar;
     TextInputEditText mensagem;
     ProgressDialog dialog;
+    public static double frete = 0;
+    double precototal = 0;
+    TextView descricao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -139,7 +142,8 @@ public class ConfirmacaoCompra extends AppCompatActivity {
                         String[] preco = carinhoitem.getPreco().split("¨");
                         String[] nomeamotra = carinhoitem.getPreco().split("¨");
 
-                        RecyclerView.Adapter adapter = new AdapterConfirmacaoCompra(carinho_itemDBList, precoTotal, carinhoitem);
+                        /*
+                        RecyclerView.Adapter adapter = new AdapterConfirmacaoCompra(carinho_itemDBList, precoTotal, carinhoitem, frete);
                         recyclerView.setAdapter(adapter);
 
                         for (int i = 0; i < titulos.length; i++) {
@@ -152,11 +156,20 @@ public class ConfirmacaoCompra extends AppCompatActivity {
 
                             adapter.notifyItemInserted(carinho_itemDBList.size() - 1);
                         }
-
+                        */
+                        StringBuilder stringBuilder = new StringBuilder();
+                        for(int i = 0; i < titulos.length; i++){
+                            stringBuilder.append(quantidade[0]).append("x ");
+                            stringBuilder.append(titulos[i]);
+                            if (i < titulos.length - 1){
+                                stringBuilder.append("\n");
+                            }
+                        }
+                        descricao.setText(stringBuilder.toString());
                     } else {
                         item_unico = true;
                         carinhoitem = (Carinho_itemDB) getIntent().getSerializableExtra("pedido");
-                        RecyclerView.Adapter adapter = new AdapterConfirmacaoCompra(carinho_itemDBList, precoTotal, carinhoitem);
+                        RecyclerView.Adapter adapter = new AdapterConfirmacaoCompra(carinho_itemDBList, precoTotal, carinhoitem, frete);
                         recyclerView.setAdapter(adapter);
                         carinho_itemDBList.add(carinhoitem);
                         adapter.notifyItemInserted(carinho_itemDBList.size() - 1);
@@ -164,7 +177,7 @@ public class ConfirmacaoCompra extends AppCompatActivity {
                 } else {
                     item_unico = true;
                     carinhoitem = (Carinho_itemDB) getIntent().getSerializableExtra("pedido");
-                    RecyclerView.Adapter adapter = new AdapterConfirmacaoCompra(carinho_itemDBList, precoTotal, carinhoitem);
+                    RecyclerView.Adapter adapter = new AdapterConfirmacaoCompra(carinho_itemDBList, precoTotal, carinhoitem, frete);
                     recyclerView.setAdapter(adapter);
                     carinho_itemDBList.add(carinhoitem);
                     adapter.notifyItemInserted(carinho_itemDBList.size() - 1);
@@ -172,15 +185,15 @@ public class ConfirmacaoCompra extends AppCompatActivity {
 
                 String[] p = carinhoitem.getPreco().split("¨");
                 String[] q = carinhoitem.getQuantidade().split("¨");
-                double precoT = 0;
+
                 for (int i = 0; i < p.length; i++) {
-                    precoT = precoT + Double.parseDouble(p[i]) * Double.parseDouble(q[i]);
+                    precototal = precototal + Double.parseDouble(p[i]) * Double.parseDouble(q[i]);
                 }
-                precoTotal.setText(String.format("R$%s", String.format(Locale.getDefault(), "%.2f", precoT)));
+                precoTotal.setText(String.format("R$%s", String.format(Locale.getDefault(), "%.2f", precototal)));
             }
 
         }
-        obter_dados_estabelecimento();
+        //obter_dados_estabelecimento();
         ender_loja.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -201,6 +214,7 @@ public class ConfirmacaoCompra extends AppCompatActivity {
         pedir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                /*
                 Map<String, String> data = obter_data();
                 String antendimento[] = estabelecimento.getAtendimento().split(",");
                 int horaAbertura = Integer.parseInt(antendimento[0].replace(":", ""));
@@ -208,15 +222,18 @@ public class ConfirmacaoCompra extends AppCompatActivity {
                 int horaAtual = Integer.parseInt(data.get("hora").substring(0, 5).replace(":", ""));
                 if(horaAbertura <= horaAtual
                         && horaFechamento >= horaAtual){
+                        */
                     int to = 0;
                     for (int i = 0; i < carinho_itemDBList.size(); i++) {
                         to += Integer.parseInt(carinho_itemDBList.get(i).getQuantidade().replaceAll("[^0-9]", ""));
                     }
                     confirmarCompraDialog("Confirme", "Deseja comfirmar o pedido de " +
                             to + " itens no valor de " + precoTotal.getText().toString() + "?");
+                    /*
                 } else {
                     Snackbar.make(recyclerView, "Opss, " + estabelecimento.getNome() + " está fechado agora \uD83D\uDE22", Snackbar.LENGTH_SHORT ).show();
                 }
+                */
             }
         });
 
@@ -229,6 +246,9 @@ public class ConfirmacaoCompra extends AppCompatActivity {
                     ender_loja.setVisibility(View.VISIBLE);
                     img_local.setVisibility(View.VISIBLE);
                     tipo_entrega = clienteBusca;
+                    precototal = Double.parseDouble(precoTotal.getText().toString().substring(2));
+                    precototal -= frete;
+                    precoTotal.setText(String.format("R$%s", String.format(Locale.getDefault(), "%.2f", precototal)));
                 }
             }
         });
@@ -243,6 +263,21 @@ public class ConfirmacaoCompra extends AppCompatActivity {
                     tipo_entrega = levarCasa;
                     if (endereco == null){
                         listar_enderecos(false);
+                    } else {
+                        if (frete == -1) {
+                            Toast.makeText(getApplicationContext(), "Infelizmente este estabelecimento não faz entregas no endereço selecionado", Toast.LENGTH_SHORT).show();
+                            cardView_Endereco.setVisibility(View.GONE);
+                            cardView_Mesa.setVisibility(View.GONE);
+                            ender_loja.setVisibility(View.VISIBLE);
+                            img_local.setVisibility(View.VISIBLE);
+                            tipo_entrega = clienteBusca;
+                            radioButton2.setChecked(false);
+                            radioButton1.setChecked(true);
+                        } else {
+                            double prec = Double.parseDouble(precoTotal.getText().toString().substring(2));
+                            precototal = prec + frete;
+                            precoTotal.setText(String.format("R$%s", String.format(Locale.getDefault(), "%.2f", prec + frete)));
+                        }
                     }
                 }
             }
@@ -256,6 +291,9 @@ public class ConfirmacaoCompra extends AppCompatActivity {
                     ender_loja.setVisibility(View.GONE);
                     img_local.setVisibility(View.GONE);
                     tipo_entrega = levarMesa;
+                    precototal = Double.parseDouble(precoTotal.getText().toString().substring(2));
+                    precototal -= frete;
+                    precoTotal.setText(String.format("R$%s", String.format(Locale.getDefault(), "%.2f", precototal)));
                 }
             }
         });
@@ -271,11 +309,14 @@ public class ConfirmacaoCompra extends AppCompatActivity {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    avista.setChecked(true);
-                    cartao.setChecked(false);
-                    Snackbar.make(buttonView,
-                            "Ainda não estamos processando pagamentos dentro do aplicativo, em breve estará disponível",
-                            Snackbar.LENGTH_LONG).show();
+                  //  avista.setChecked(true);
+                   // cartao.setChecked(false);
+                    //Snackbar.make(buttonView,
+                      //      "Ainda não estamos processando pagamentos dentro do aplicativo, em breve estará disponível",
+                        //    Snackbar.LENGTH_LONG).show();
+                    add_cartao.setVisibility(View.VISIBLE);
+                } else {
+                    add_cartao.setVisibility(View.GONE);
                 }
             }
         });
@@ -286,7 +327,7 @@ public class ConfirmacaoCompra extends AppCompatActivity {
             SharedPreferences sharedPreferences = getSharedPreferences("Login", Context.MODE_PRIVATE);
             userName = sharedPreferences.getString("nome", "");
             userId = sharedPreferences.getString("userid", "");
-            obter_endereco();
+            //obter_endereco();
         }
 
     }
@@ -317,15 +358,16 @@ public class ConfirmacaoCompra extends AppCompatActivity {
         spinner = findViewById(R.id.spinner);
         progressBar = findViewById(R.id.progressBar3);
         mensagem = findViewById(R.id.mensagem);
-    }
 
+        descricao = findViewById(R.id.descricao);
+    }
     private void pedir(){
         if (!carinhoitem.getQuantidade().equals("0")) {
             String ende = "";
             String apelidoendereco = "";
             switch (tipo_entrega){
                 case clienteBusca:
-                    ende = estabelecimento.getEndereco();
+                    ende ="";// estabelecimento.getEndereco();todo
                     apelidoendereco = "Você precisa buscar seu pedido na loja";
                     break;
                 case levarCasa:
@@ -348,19 +390,20 @@ public class ConfirmacaoCompra extends AppCompatActivity {
             Log.v("precos", precos.toString());
             Map<String, String> map = obter_data();
             final Pedidos pedido = new Pedidos(carinhoitem.getTitulo(), carinhoitem.getDescricao(), carinhoitem.getCodigo(),
-                    "Pedido Enviado", carinhoitem.getEstabelecimento(), carinhoitem.getid(),
-                    carinhoitem.getTipoestabelecimento(), carinhoitem.getQuantidade().replace ("\n", ""), userId, userName,
+                    "Pedido Enviado", carinhoitem.getEstabelecimento(), carinhoitem.getEstabelecimentoid(),
+                    carinhoitem.getTipoestabelecimento(), carinhoitem.getQuantidade().replace ("\n", ""),
+                    userId, userName,
                     ende, tipo_entrega, map.get("data"), map.get("hora"), mensagem.getText().toString(), 0,
                     FirebaseInstanceId.getInstance().getToken(), precos.toString(), apelidoendereco,
-                    carinhoitem.getCidadecode(), carinhoitem.getCidade());
+                    carinhoitem.getCidadecode(), carinhoitem.getCidade(), String.valueOf(frete));
             pedido.setDatacompleta(map.toString());
 
             FirebaseFirestore.getInstance()
                     .collection("estabelecimentos")
                     .document(Constants.cidade)
-                    .collection(String.valueOf(carinhoitem.getCidadecode()))
-                    .document(carinho_itemDBList.get(0).getTipoestabelecimento())
-                    .collection(estabelecimento.getId())
+                    .collection("uniao")//String.valueOf(carinhoitem.getCidadecode()))
+                    //.document(carinho_itemDBList.get(0).getTipoestabelecimento())
+                    //.collection(estabelecimento.getId())
                     .document("pedidos")
                     .collection("novos")
                     .add(pedido).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
@@ -382,7 +425,6 @@ public class ConfirmacaoCompra extends AppCompatActivity {
             Snackbar.make(add_cartao, "Insira pelo menos um produto na lista", Snackbar.LENGTH_SHORT).show();
         }
     }
-
     private void salvarUsuario(final Pedidos pedido) {
         FirebaseFirestore.getInstance()
                 .collection("Pedidos")
@@ -396,7 +438,7 @@ public class ConfirmacaoCompra extends AppCompatActivity {
                         dialog.dismiss();
                         Toast.makeText(getApplicationContext(), "Pedido realizado com sucesso", Toast.LENGTH_SHORT).show();
                         remover_carinho();
-                        notificarEstabelecimento("topic", pedido);
+                        //notificarEstabelecimento("topic", pedido);
                         finish();
                     }
                 }).addOnFailureListener(new OnFailureListener() {
@@ -408,7 +450,6 @@ public class ConfirmacaoCompra extends AppCompatActivity {
             }
         });
     }
-
     private void confirmarCompraDialog(String title, String msg) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
@@ -445,7 +486,7 @@ public class ConfirmacaoCompra extends AppCompatActivity {
     }
     private void configurarAdapter(String id){
         final List<String> arrayList = new ArrayList<>();
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_list_item_1, arrayList);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
@@ -453,11 +494,11 @@ public class ConfirmacaoCompra extends AppCompatActivity {
         spinner.setAdapter(adapter);
         carregar_mesas(arrayList, adapter, id);
     }
-    private void carregar_mesas(final List<String> arrayList, final ArrayAdapter<String> adapter, String res) {
+    private void carregar_mesas(final List<String> arrayList, final ArrayAdapter<String> adapter, String id) {
         FirebaseDatabase.getInstance().getReference()
                 .child("Estabelecimentos")
                 .child(carinhoitem.getTipoestabelecimento())
-                .child(res)
+                .child(id)
                 .child("mesas")
                 .addChildEventListener(new ChildEventListener() {
                     @Override
@@ -633,13 +674,57 @@ public class ConfirmacaoCompra extends AppCompatActivity {
         } else {
             complemento.setText(endereco.getNumero());
         }
-        calcularFrete();
+        if (estabelecimento != null) {
+            frete = calcularFrete();
+            if (radioButton2.isChecked()) {
+                if (frete == -1) {
+                    Toast.makeText(getApplicationContext(), "Infelizmente este estabelecimento não faz entregas no endereço selecionado", Toast.LENGTH_SHORT).show();
+                    cardView_Endereco.setVisibility(View.GONE);
+                    cardView_Mesa.setVisibility(View.GONE);
+                    ender_loja.setVisibility(View.VISIBLE);
+                    img_local.setVisibility(View.VISIBLE);
+                    tipo_entrega = clienteBusca;
+                    radioButton2.setChecked(false);
+                    radioButton1.setChecked(true);
+                } else {
+
+                    precototal = 0;
+                    String[] p = carinhoitem.getPreco().split("¨");
+                    String[] q = carinhoitem.getQuantidade().split("¨");
+                    for (int i = 0; i < p.length; i++) {
+                        precototal = precototal + Double.parseDouble(p[i]) * Double.parseDouble(q[i]);
+                    }
+                    precoTotal.setText(String.format("R$%s", String.format(Locale.getDefault(), "%.2f", precototal + frete)));
+                }
+            }
+        }
+    }
+    private double calcularFrete() {
+        String latlon1[] = estabelecimento.getCoordenadas().split(","); ;
+        double distancia = calculaDistancia(Double.parseDouble(latlon1[0]), Double.parseDouble(latlon1[1]),
+                Double.parseDouble(endereco.getLat()), Double.parseDouble(endereco.getLongi()));
+        if ((distancia) <= estabelecimento.getDistanciamax()){
+            return estabelecimento.getPrecoKm() * distancia;
+        } else {
+         return -1;//distancia fora da area de entrega
+        }
+
     }
 
-    private void calcularFrete() {
-        String latlon1[] = estabelecimento.getCoordenadas().split(",");
+    private double calculaDistancia(double lat1, double lng1, double lat2, double lng2) {
+        //double earthRadius = 3958.75;//miles
+        double earthRadius = 6371;//kilometers
+        double dLat = Math.toRadians(lat2 - lat1);
+        double dLng = Math.toRadians(lng2 - lng1);
+        double sindLat = Math.sin(dLat / 2);
+        double sindLng = Math.sin(dLng / 2);
+        double a = Math.pow(sindLat, 2) + Math.pow(sindLng, 2)
+                * Math.cos(Math.toRadians(lat1))
+                * Math.cos(Math.toRadians(lat2));
+        double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+        double dist = earthRadius * c;
+        return dist;// * 100; //em Km
     }
-
     private void notificarEstabelecimento(final String type, final Pedidos pedido) {//notifica o estabelecimento sobre o pedido
             new Thread() {
                 @Override
@@ -716,7 +801,7 @@ public class ConfirmacaoCompra extends AppCompatActivity {
     }
     private void remover_carinho() {
         Carinho_itemDB.deleteAll(Carinho_itemDB.class,
-                "codigo = ? and id = ?", carinhoitem.getCodigo(), carinhoitem.getid());
+                "codigo = ? and id = ?", carinhoitem.getCodigo(), carinhoitem.getIddata());
     }
     class ImageSwitcherPicasso implements Target {
 
@@ -749,7 +834,7 @@ public class ConfirmacaoCompra extends AppCompatActivity {
         // Check which request we're responding to
         if (requestCode == 1) {
             if (resultCode == RESULT_OK) {
-                if (!enderecos.contains((Endereco) data.getSerializableExtra("endereco"))){
+                if (!enderecos.contains(data.getSerializableExtra("endereco"))){
                     enderecos.add((Endereco) data.getSerializableExtra("endereco"));
                 }
                 listar_enderecos(endereco != null);
@@ -768,15 +853,6 @@ public class ConfirmacaoCompra extends AppCompatActivity {
                 obter_endereco();
             }
         }
-    }
-    public double distance(double lat1, double lon1, double lat2, double lon2) {
-        double dLat = Math.toRadians(lat2-lat1);
-        double dLon = Math.toRadians(lon2-lon1);
-        double a = Math.sin(dLat/2) * Math.sin(dLat/2) +
-                Math.cos(Math.toRadians(lat1)) * Math.cos(Math.toRadians(lat2)) *
-                        Math.sin(dLon/2) * Math.sin(dLon/2);
-        double c = 2 * Math.asin(Math.sqrt(a));
-        return 6366000 * c;
     }
     @Override
     public void onResume(){

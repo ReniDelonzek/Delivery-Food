@@ -21,7 +21,7 @@ import rd.com.vendedor.R;
 import rd.com.vendedor.adm.item.Amostras;
 
 
-public class Adapter_selecionar_amostra extends RecyclerView.Adapter {
+public class AdapterSelecionarAmostra extends RecyclerView.Adapter {
 
     public interface OnItemClickListener {
         void onItemClick(Amostras item);
@@ -31,7 +31,7 @@ public class Adapter_selecionar_amostra extends RecyclerView.Adapter {
     private final OnItemClickListener listener;
 
     private List<Amostras> list;
-    public Adapter_selecionar_amostra(List<Amostras> objects, OnItemClickListener onItemClickListener) {
+    public AdapterSelecionarAmostra(List<Amostras> objects, OnItemClickListener onItemClickListener) {
         list = objects;
         this.type = 0;
         listener = onItemClickListener;

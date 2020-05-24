@@ -246,7 +246,7 @@ public class Adicionar_amostras extends AppCompatActivity {
 
     }
     private void obter_imagem(){
-        Intent i = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        Intent i = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         startActivityForResult(i, 1);
     }
     private void permissoes(final Activity activity) {

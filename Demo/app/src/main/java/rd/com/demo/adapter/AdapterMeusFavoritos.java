@@ -123,10 +123,12 @@ public class AdapterMeusFavoritos extends RecyclerView.Adapter {
                holder.bt.setOnClickListener(new View.OnClickListener() {
                    @Override
                    public void onClick(View v) {
-                       Carinho_itemDB carinho_itemDB = new Carinho_itemDB(produto.getNome(), "1", produto.getDescricao(),
-                               produto.getEstabelecimento(), produto.getEstabelecimentoid(), produto.getTipoestabelecimento(),
-                               produto.getCodigo(), "11/02/2018", String.valueOf(produto.getPreco()),
-                               produto.getUrl());
+                       Long tsLong = System.currentTimeMillis()/1000;
+                       String ts = tsLong.toString();
+                       Carinho_itemDB carinho_itemDB = new Carinho_itemDB(produto.getNome(), produto.getDescricao(), produto.getTipo_estabelecimento(), produto.getEstabelecimento(),
+                               produto.getEstabelecimento_id(), produto.getCodigo(), produto.getUrl(), "1", String.valueOf(produto.getPreco()), ts, false, true, produto.getCidadecode(),
+                               produto.getCidade(), produto.getNomeamostra());
+
                        Intent intent = new Intent(v.getContext(), ConfirmacaoCompra.class);
                        intent.setAction("comprar");
                        intent.putExtra("type", "buySimple");

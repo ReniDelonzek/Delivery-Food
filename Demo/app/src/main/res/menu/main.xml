@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+    <!---
     <item
         android:id="@+id/layoutType"
         android:title="Configurações"
@@ -12,5 +13,12 @@
         app:showAsAction="ifRoom"
         app:actionViewClass="android.support.v7.widget.SearchView"
         android:title="Pesquisar"/>
+
+        -->
+    <item
+        android:id="@+id/suporte"
+        android:title="Suporte"
+        app:showAsAction="never"/>
+
 
 </menu>

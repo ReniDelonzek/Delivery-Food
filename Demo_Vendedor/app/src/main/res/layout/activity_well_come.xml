@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/primaryColor"
-    tools:context="rd.com.vendedor.adm.activity.WellComeActivity">
+    tools:context="rd.com.pediupagouvendedor.activity.WellComeActivity">
 
 
     <ImageView

@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.Locale;
 
 import rd.com.demo.R;
+import rd.com.demo.activity.ConfirmacaoCompra;
 import rd.com.demo.banco.sugarOs.Carinho_itemDB;
 
 import static com.facebook.FacebookSdk.getApplicationContext;
@@ -28,10 +29,12 @@ public class AdapterConfirmacaoCompra extends RecyclerView.Adapter {
     private TextView precoTotal;
     private Carinho_itemDB carinho_itemDB;
 
-    public AdapterConfirmacaoCompra(List<Carinho_itemDB> list, TextView textView, Carinho_itemDB carinho_itemDB){
+    public AdapterConfirmacaoCompra(List<Carinho_itemDB> list, TextView textView,
+                                    Carinho_itemDB carinho_itemDB, double precot){
         this.list = list;
         precoTotal = textView;
         this.carinho_itemDB = carinho_itemDB;
+       // this.precofrete = precot;
     }
 
     @Override
@@ -71,7 +74,7 @@ public class AdapterConfirmacaoCompra extends RecyclerView.Adapter {
             public void onClick(View v) {
                 Carinho_itemDB carinhoitem = list.get(holder.getAdapterPosition());
                 int q = Integer.parseInt(carinhoitem.getQuantidade().replaceAll("[^0-9]", ""));
-                if (q > 0){
+                if (q > 1){
                     carinhoitem.setQuantidade(String.valueOf(q - 1).replaceAll("[^0-9]", ""));
                     list.set(holder.getAdapterPosition(), carinhoitem);//atualiza o numero do itens na lista
                     viewHolder.quantidade.setText(String.valueOf(carinhoitem.getQuantidade()));
@@ -96,6 +99,7 @@ public class AdapterConfirmacaoCompra extends RecyclerView.Adapter {
         for(int i = 0; i < list.size(); i++){
             preco += Double.parseDouble(list.get(i).getPreco()) * Integer.parseInt(list.get(i).getQuantidade());
         }
+        preco = preco + ConfirmacaoCompra.frete;
         precoTotal.setText(String.format("R$%s", String.format(Locale.getDefault(), "%.2f",
                 preco)));
         atualizarCarinho();

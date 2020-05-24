@@ -32,10 +32,11 @@ import static rd.com.vendedor.adm.activity.GerenciarProdutos.idEstabelecimento;
 import static rd.com.vendedor.adm.activity.GerenciarProdutos.tipoEstabelecimento;
 
 
-public class Adapter_Produtos extends RecyclerView.Adapter {
+public class AdapterProdutos extends RecyclerView.Adapter {
+
 
     private List<Produto> list;
-    public Adapter_Produtos(List<Produto> objects) {
+    public AdapterProdutos(List<Produto> objects) {
         list = objects;
     }
 

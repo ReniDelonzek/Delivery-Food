@@ -3,13 +3,13 @@ package rd.com.vendedor.adm.item;
 public class UserAdm {
     private String nome, sobrenome, id, cargo,
             estabelecimentonome, estabelecimentotipo, estabelecimentoid, cidadecode,
-            cidade;
+            cidade, codigopostal, caminhodatabase;
 
 
     public UserAdm(){}
 
     public UserAdm(String nome, String sobrenome, String id, String cargo, String estabelecimentonome, String estabelecimentotipo,
-                   String estabelecimentoid, String cidadecode, String cidade) {
+                   String estabelecimentoid, String cidadecode, String cidade, String codigopostal, String caminhodatabase) {
         this.nome = nome;
         this.sobrenome = sobrenome;
         this.id = id;
@@ -19,6 +19,24 @@ public class UserAdm {
         this.estabelecimentoid = estabelecimentoid;
         this.cidadecode = cidadecode;
         this.cidade = cidade;
+        this.codigopostal = codigopostal;
+        this.caminhodatabase = caminhodatabase;
+    }
+
+    public String getCaminhodatabase() {
+        return caminhodatabase;
+    }
+
+    public void setCaminhodatabase(String caminhodatabase) {
+        this.caminhodatabase = caminhodatabase;
+    }
+
+    public String getCodigopostal() {
+        return codigopostal;
+    }
+
+    public void setCodigopostal(String codigopostal) {
+        this.codigopostal = codigopostal;
     }
 
     public String getCidadecode() {

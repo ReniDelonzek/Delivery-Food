@@ -1,8 +1,6 @@
 package rd.com.demo.activity;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -16,7 +14,6 @@ import java.util.List;
 
 import rd.com.demo.R;
 import rd.com.demo.adapter.AdapterMeusFavoritos;
-import rd.com.demo.adapter.AdapterMeusPedidos;
 import rd.com.demo.banco.sugarOs.AmostrasFavoritasDB;
 import rd.com.demo.banco.sugarOs.ProdutoFavoritosDB;
 
@@ -31,7 +28,7 @@ public class MeusFavoritos extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_meus_favoritos);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 

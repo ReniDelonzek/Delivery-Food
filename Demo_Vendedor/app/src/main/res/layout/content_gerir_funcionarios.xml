@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="rd.com.vendedor.adm.activity.Gerenciar_funcionarios"
+    tools:context="rd.com.pediupagouvendedor.activity.Gerenciar_funcionarios"
     tools:showIn="@layout/activity_gerir_funcionarios">
 
     <android.support.v7.widget.RecyclerView

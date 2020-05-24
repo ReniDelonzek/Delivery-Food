@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.annotation.NonNull;
@@ -18,10 +19,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -47,9 +48,9 @@ import rd.com.demo.R;
 import rd.com.demo.adapter.SnapAdapterListaEstabelecimentos;
 import rd.com.demo.auxiliares.Constants;
 import rd.com.demo.auxiliares.LibraryClass;
+import rd.com.demo.item.Snap_Item;
 import rd.com.demo.item.firebase.Amostras;
 import rd.com.demo.item.firebase.Estabelecimento;
-import rd.com.demo.item.Snap_Item;
 
 public class ListaEstabelecimentos extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener  {
@@ -65,7 +66,7 @@ public class ListaEstabelecimentos extends AppCompatActivity
     boolean iniciar_adapter = false;
     public static String tipoEstabelecimento, cidadecode;
     TextView textViewcidade;
-
+    ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,6 +84,8 @@ public class ListaEstabelecimentos extends AppCompatActivity
         snapAdapter = new SnapAdapterListaEstabelecimentos();
         textViewcidade = findViewById(R.id.cidade);
         textViewcidade.setVisibility(View.GONE);
+        progressBar = findViewById(R.id.progressBar5);
+        progressBar.setVisibility(View.VISIBLE);
 
         try {
             tipo = getIntent().getIntExtra("tipo", 0) - 1;
@@ -94,22 +97,22 @@ public class ListaEstabelecimentos extends AppCompatActivity
         }
 
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        mRecyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+        mRecyclerView = findViewById(R.id.recyclerView);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.setHasFixedSize(false);
         getEstabelecimentos();
         buscar_dados();
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -123,12 +126,15 @@ public class ListaEstabelecimentos extends AppCompatActivity
         iniciar_adapter = true;
         snapAdapter.addSnap(new Snap_Item(0, "Restaurantes", list2, true));
         snapAdapter.addSnap(new Snap_Item(1, "Destaques", list3, true));
+        progressBar.setVisibility(View.GONE);
         mRecyclerView.setAdapter(snapAdapter);
     }
     private void getEstabelecimentos(){
         FirebaseDatabase.getInstance().getReference()
                 .child("Estabelecimentos")
                 .child(servicos.get(tipo))
+                .orderByChild("cidadecode")
+                .equalTo(cidadecode)
                 .addChildEventListener(new ChildEventListener() {
                     @Override
                     public void onChildAdded(DataSnapshot dataSnapshot, String s) {
@@ -173,16 +179,20 @@ public class ListaEstabelecimentos extends AppCompatActivity
                 .get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot documentSnapshots) {
-                List<DocumentSnapshot> snapshotList = documentSnapshots.getDocuments();
-                Log.v(TAG, snapshotList.toString());
-                for(int i = 0; i < snapshotList.size(); i++){
-                    Amostras p = snapshotList.get(i).toObject(Amostras.class);
-                    list3.add(p);
-                    if (!iniciar_adapter){//caso o adapter ainda n esteja iniciado
-                        setupAdapter();
-                    }
-                    snapAdapter.notifyItemChanged(1);
+                if (!documentSnapshots.isEmpty()) {
+                    List<DocumentSnapshot> snapshotList = documentSnapshots.getDocuments();
+                    for (int i = 0; i < snapshotList.size(); i++) {
+                        Amostras p = snapshotList.get(i).toObject(Amostras.class);
+                        list3.add(p);
+                        if (!iniciar_adapter) {//caso o adapter ainda n esteja iniciado
+                            setupAdapter();
+                        }
+                        snapAdapter.notifyItemChanged(1);
 
+                    }
+                } else {
+                    progressBar.setVisibility(View.GONE);
+                    Snackbar.make(mRecyclerView, "Nenhum produto disponível nesse estabelecimento", Snackbar.LENGTH_SHORT).show();
                 }
             }
         }).addOnFailureListener(new OnFailureListener() {
@@ -195,7 +205,7 @@ public class ListaEstabelecimentos extends AppCompatActivity
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
@@ -211,26 +221,38 @@ public class ListaEstabelecimentos extends AppCompatActivity
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.layoutType) {
-            startActivity(new Intent(getApplicationContext(), ComecarCadastro.class));
-            return true;
-        } else if (id == R.id.action_search){
-            Snackbar.make(mRecyclerView, "Aqui o usuario fará a pesquisa dos produtos", Snackbar.LENGTH_SHORT).show();
+        if (id == R.id.suporte){
+            startActivity(new Intent(getApplicationContext(), Mensagem.class));
         }
         return super.onOptionsItemSelected(item);
     }
-    @SuppressWarnings("StatementWithEmptyBody")
-    @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
         switch (id){
             case R.id.sair:
                 sair();
                 break;
+            case R.id.carinhoitem:
+                startActivity(new Intent(getApplicationContext(), Carinho.class));
+                break;
+            case R.id.favoritos:
+                startActivity(new Intent(getApplicationContext(), MeusFavoritos.class));
+                break;
+            case R.id.reclamacoes:
+                startActivity(new Intent(getApplicationContext(), Mensagem.class));
+                break;
+            case R.id.meuspedidos:
+                startActivity(new Intent(getApplicationContext(), MeusPedidos.class));
+                break;
+            case R.id.avaliar:
+                String url = "https://play.google.com/store/apps/details?id=" + getPackageName();
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse(url));
+                startActivity(i);
+                break;
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
@@ -238,9 +260,9 @@ public class ListaEstabelecimentos extends AppCompatActivity
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         View header = navigationView.getHeaderView(0);
-        TextView nomeUsuario = (TextView) header.findViewById(R.id.nome);
-        CircleImageView imageView = (CircleImageView) header.findViewById(R.id.imageView);
-        RelativeLayout linearLayout = (RelativeLayout) header.findViewById(R.id.header_layout);
+        TextView nomeUsuario = header.findViewById(R.id.nome);
+        CircleImageView imageView = header.findViewById(R.id.imageView);
+        RelativeLayout linearLayout = header.findViewById(R.id.header_layout);
 
         linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -267,7 +289,7 @@ public class ListaEstabelecimentos extends AppCompatActivity
             imageView.setImageResource(R.drawable.ic_account_circle_white_48dp);
             nomeUsuario.setText("Faça seu Login!");
             nomeUsuario.setBackgroundColor(ContextCompat.getColor(
-                    context, R.color.transparent));;
+                    context, R.color.transparent));
             //imageView.setVisibility(View.GONE);
         }
     }

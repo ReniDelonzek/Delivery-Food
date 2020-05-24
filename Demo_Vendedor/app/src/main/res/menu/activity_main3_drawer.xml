@@ -51,6 +51,14 @@
         </menu>
     </item>
 
+    <item android:title="Entregas">
+        <menu>
+            <item
+                android:id="@+id/preco_entrega"
+                android:title="Mudar o preço de entrega por Km" />
+        </menu>
+    </item>
+
     <item android:title="Conta">
         <menu>
             <item

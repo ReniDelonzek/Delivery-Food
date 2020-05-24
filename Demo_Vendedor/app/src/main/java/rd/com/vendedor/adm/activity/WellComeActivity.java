@@ -1,10 +1,8 @@
 package rd.com.vendedor.adm.activity;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -23,7 +21,7 @@ public class WellComeActivity extends AppCompatActivity {
             startActivity(new Intent(getApplicationContext(), Login.class));
             finish();
         } else {
-            startActivity(new Intent(getApplicationContext(), Main3Activity.class));
+            startActivity(new Intent(getApplicationContext(), MainActivity.class));
             finish();
         }
     }

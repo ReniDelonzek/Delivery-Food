@@ -25,7 +25,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import rd.com.vendedor.R;
-import rd.com.vendedor.adm.adapter.Adapter_Produtos;
+import rd.com.vendedor.adm.adapter.AdapterProdutos;
 import rd.com.vendedor.adm.item.Amostras;
 import rd.com.vendedor.adm.item.Produto;
 import rd.com.vendedor.adm.utils.Constants;
@@ -36,7 +36,7 @@ public class GerenciarProdutos extends AppCompatActivity {
     public static String tipoEstabelecimento, idEstabelecimento, nomeEstabelecimento, cidadecode;
     TextView msg;
     ProgressBar progressBar;
-    Adapter_Produtos adapter_produtos;
+    AdapterProdutos adapter_produtos;
     public static Amostras amostra;
 
     @Override
@@ -55,11 +55,14 @@ public class GerenciarProdutos extends AppCompatActivity {
                 intent.setAction("add_from_amostra");
                 intent.putExtra(Constants.nomeEstabelecimento, nomeEstabelecimento);
                 intent.putExtra(Constants.idEstabelecimento, idEstabelecimento);
-                intent.putExtra(Constants.cidade, cidadecode);
+                intent.putExtra(Constants.cidadeCode, cidadecode);
+
                 intent.putExtra("amostracode", amostra.getCaminho());
+                intent.putExtra("amostranome", amostra.getTitulo());
                 intent.putExtra("quantidade", amostra.getQuantidade());
                 intent.putExtra("categoria", amostra.getCategoria());
                 intent.putExtra("url", amostra.getUrl());
+
                 startActivity(intent);
             }
         });
@@ -75,7 +78,7 @@ public class GerenciarProdutos extends AppCompatActivity {
         recyclerView = findViewById(R.id.recyclerView);
         produtos = new ArrayList<>();
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-        adapter_produtos = new Adapter_Produtos(produtos);
+        adapter_produtos = new AdapterProdutos(produtos);
         recyclerView.setAdapter(adapter_produtos);
 
         buscarDados();

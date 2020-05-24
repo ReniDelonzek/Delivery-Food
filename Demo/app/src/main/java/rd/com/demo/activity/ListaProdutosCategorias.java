@@ -3,19 +3,18 @@ package rd.com.demo.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
-
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -68,7 +67,7 @@ public class ListaProdutosCategorias extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_produtos_categorias);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
@@ -151,12 +150,12 @@ public class ListaProdutosCategorias extends AppCompatActivity {
 
 
         // Set up the ViewPager with the sections adapter.
-        mViewPager = (ViewPager) findViewById(R.id.container);
+        mViewPager = findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+        TabLayout tabLayout = findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -523,6 +522,7 @@ public class ListaProdutosCategorias extends AppCompatActivity {
         @Override
         public void onResume() {
             super.onResume();
+            verificarDados();
         }
 
         @Override
@@ -530,34 +530,41 @@ public class ListaProdutosCategorias extends AppCompatActivity {
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_lista_produtos_categorias, container, false);
             recyclerView = rootView.findViewById(R.id.recyclerView);
+            verificarDados();
+            recyclerView.setLayoutManager(new GridLayoutManager(container.getContext(), 2));
+            recyclerView.setAdapter(adapter_amostras);
 
+            return rootView;
+        }
+
+        private void verificarDados() {
             switch (getArguments().getInt(ARG_SECTION_NUMBER)){
                 case 1:
-                     adapter_amostras = new AdapterAmostras(amostras1);
-                     if (!amostras1.isEmpty()){
-                         hideProgress();
-                     } else {
-                         progress.setVisibility(View.VISIBLE);
-                         text.setVisibility(View.VISIBLE);
-                     }
+                    adapter_amostras = new AdapterAmostras(amostras1);
+                    if (!amostras1.isEmpty()){
+                        hideProgress();
+                    } else {
+                        progress.setVisibility(View.VISIBLE);
+                        text.setVisibility(View.VISIBLE);
+                    }
                     break;
                 case 2:
                     adapter_amostras = new AdapterAmostras(amostras2);
                     if (!amostras2.isEmpty()){
                         hideProgress();
                     }else {
-                    progress.setVisibility(View.VISIBLE);
-                    text.setVisibility(View.VISIBLE);
-                }
+                        progress.setVisibility(View.VISIBLE);
+                        text.setVisibility(View.VISIBLE);
+                    }
                     break;
                 case 3:
                     adapter_amostras = new AdapterAmostras(amostras3);
                     if (!amostras3.isEmpty()){
                         hideProgress();
                     }else {
-                    progress.setVisibility(View.VISIBLE);
-                    text.setVisibility(View.VISIBLE);
-                }
+                        progress.setVisibility(View.VISIBLE);
+                        text.setVisibility(View.VISIBLE);
+                    }
                     break;
                 case 4:
                     adapter_amostras = new AdapterAmostras(amostras4);
@@ -623,14 +630,9 @@ public class ListaProdutosCategorias extends AppCompatActivity {
                     }
                     break;
 
-                    default:
-                        adapter_amostras = new AdapterAmostras(amostras1);
+                default:
+                    adapter_amostras = new AdapterAmostras(amostras1);
             }
-
-            recyclerView.setLayoutManager(new GridLayoutManager(container.getContext(), 2));
-            recyclerView.setAdapter(adapter_amostras);
-
-            return rootView;
         }
     }
 

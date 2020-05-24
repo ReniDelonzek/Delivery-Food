@@ -26,7 +26,7 @@
                 android:maxHeight="180dp"
                 android:maxWidth="200dp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/cartao" />
+                android:src="@drawable/carne_vermelha" />
 
         <TextView
             android:layout_marginLeft="7dp"
@@ -60,7 +60,7 @@
             android:layout_marginRight="14dp"
             android:text="Button"
             app:backgroundTint="@color/colorAccent"
-            app:srcCompat="@drawable/ic_favorite_border_white_36dp" />
+            app:srcCompat="@drawable/ic_add_shopping_cart_white_48dp" />
 
         <TextView
             android:layout_marginBottom="10dp"

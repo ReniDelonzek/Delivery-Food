@@ -39,8 +39,8 @@ public class AdapterCarinho extends RecyclerView.Adapter {
             holder.checkBox1.setChecked(true);
         }
         if (holder.getAdapterPosition() > 0){
-            if (list.get(holder.getAdapterPosition() - 1).getid()//checa se o ultimo pedido listado e do mesmo estabelecimento que este
-                    .equals(list.get(position).getid())){
+            if (list.get(holder.getAdapterPosition() - 1).getEstabelecimentoid()//checa se o ultimo pedido listado e do mesmo estabelecimento que este
+                    .equals(list.get(position).getEstabelecimentoid())){
                 holder.checkBox1.setVisibility(View.GONE);//caso o ultimo pedido seja do mesmo, n exibe o nome do estabelecimento
                 holder.cardView1.setVisibility(View.GONE);
 
@@ -60,8 +60,8 @@ public class AdapterCarinho extends RecyclerView.Adapter {
                     int o = list.size() - holder.getAdapterPosition();
                     for(int i = 1; i < o; i++){//percore todos os itens da lista a partir do atual
                         // pra marcar todos os produtos do estabelecimento
-                        if (list.get(holder.getAdapterPosition() + i).getid()
-                                .equals(list.get(holder.getAdapterPosition()).getid())){
+                        if (list.get(holder.getAdapterPosition() + i).getEstabelecimentoid()
+                                .equals(list.get(holder.getAdapterPosition()).getEstabelecimentoid())){
                             Carinho_itemDB p = list.get(holder.getAdapterPosition() + i);
                             p.setCheck2(isChecked);
                             p.setCheck1(isChecked);

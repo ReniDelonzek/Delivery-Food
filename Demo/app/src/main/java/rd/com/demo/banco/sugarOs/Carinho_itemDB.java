@@ -23,30 +23,14 @@ public class Carinho_itemDB extends SugarRecord<Carinho_itemDB> implements Seria
     private String cidadecode;
     private String cidade;
     private String nomeamostra;
+    private String iddata;
+
 
     public Carinho_itemDB(){}
 
-
-    public Carinho_itemDB(String titulo, String quantidade, String descricao, String estabelecimento,
-                          String estabelecimentoid, String tipoestabelecimento, String codigo, String data, String preco,
-                          String url){
-        this.titulo = titulo;
-        this.quantidade = quantidade;
-        this.descricao = descricao;
-        this.estabelecimento = estabelecimento;
-        this.estabelecimentoid = estabelecimentoid;
-        this.codigo = codigo;
-        this.quantidade = quantidade;
-        this.data = data;
-        this.preco = preco;
-        this.url = url;
-        this.tipoestabelecimento = tipoestabelecimento;
-    }
-
-    public Carinho_itemDB(String titulo, String descricao, String tipoestabelecimento,
-                          String estabelecimento, String estabelecimentoid, String codigo,
-                          String url, String quantidade, String preco, String data,
-                          boolean check1, boolean check2, String cidadecode, String cidade, String nomeamostra) {
+    public Carinho_itemDB(String titulo, String descricao, String tipoestabelecimento, String estabelecimento, String estabelecimentoid,
+                          String codigo, String url, String quantidade,
+                          String preco, String data, boolean check1, boolean check2, String cidadecode, String cidade, String nomeamostra) {
         this.titulo = titulo;
         this.descricao = descricao;
         this.tipoestabelecimento = tipoestabelecimento;
@@ -145,13 +129,7 @@ public class Carinho_itemDB extends SugarRecord<Carinho_itemDB> implements Seria
     public String getEstabelecimento() {
         return estabelecimento;
     }
-    public String getid() {
-        return estabelecimentoid;
-    }
     public void setEstabelecimento(String estabelecimento) {this.estabelecimento = estabelecimento;}
-    public void setid(String id) {
-        this.estabelecimentoid = id;
-    }
     public String getQuantidade() {
         return quantidade;
     }
@@ -165,4 +143,11 @@ public class Carinho_itemDB extends SugarRecord<Carinho_itemDB> implements Seria
         this.estabelecimentoid = estabelecimentoid;
     }
 
+    public String getIddata() {
+        return iddata;
+    }
+
+    public void setIddata(String iddata) {
+        this.iddata = iddata;
+    }
 }

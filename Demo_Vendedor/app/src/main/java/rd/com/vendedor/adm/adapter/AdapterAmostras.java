@@ -22,10 +22,10 @@ import rd.com.vendedor.adm.item.Amostras;
 import rd.com.vendedor.adm.utils.Constants;
 
 
-public class Adapter_Ammostras extends RecyclerView.Adapter {
+public class AdapterAmostras extends RecyclerView.Adapter {
 
     private List<Amostras> list;
-    public Adapter_Ammostras(List<Amostras> objects) {
+    public AdapterAmostras(List<Amostras> objects) {
         list = objects;
     }
 

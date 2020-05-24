@@ -11,6 +11,7 @@
     <!--android:background="#EEEEEE"-->
 
     <TextView
+        android:visibility="gone"
         android:id="@+id/cidade"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -26,5 +27,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/cidade" />
+
+    <ProgressBar
+        android:visibility="gone"
+        android:id="@+id/progressBar5"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true" />
+
 
 </RelativeLayout>

@@ -79,7 +79,7 @@ public class ConcluirCadastro extends AppCompatActivity {
                 }
             }
         }
-        btnMorph1 = (IndeterminateProgressButton) findViewById(R.id.btnMorph1);
+        btnMorph1 = findViewById(R.id.btnMorph1);
         btnMorph1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -281,15 +281,15 @@ public class ConcluirCadastro extends AppCompatActivity {
         btnMorph.morph(circle);
     }
     private void registarViews(){
-        nom = (TextInputEditText) findViewById(R.id.editText4);
-        senha1 = (TextInputEditText) findViewById(R.id.editText2);
-        senha2 = (TextInputEditText) findViewById(R.id.editText3);
-        Edemail = (TextInputEditText) findViewById(R.id.text_input_edit_email);
-        textInputLayout_email = (TextInputLayout) findViewById(R.id.text_input_layout_email);
-        textInputLayout_nome = (TextInputLayout) findViewById(R.id.text_input_layout_nome);
-        textInputLayout_senha1 = (TextInputLayout) findViewById(R.id.text_input_layout_senha1);
-        textInputLayout_senha2 = (TextInputLayout) findViewById(R.id.text_input_layout_senha2);
-        login = (Button) findViewById(R.id.bt_login);
+        nom = findViewById(R.id.editText4);
+        senha1 = findViewById(R.id.editText2);
+        senha2 = findViewById(R.id.editText3);
+        Edemail = findViewById(R.id.text_input_edit_email);
+        textInputLayout_email = findViewById(R.id.text_input_layout_email);
+        textInputLayout_nome = findViewById(R.id.text_input_layout_nome);
+        textInputLayout_senha1 = findViewById(R.id.text_input_layout_senha1);
+        textInputLayout_senha2 = findViewById(R.id.text_input_layout_senha2);
+        login = findViewById(R.id.bt_login);
         cpfEditText = findViewById(R.id.cpf);
         cpf_input = findViewById(R.id.textInputLayout5);
 
@@ -400,7 +400,7 @@ public class ConcluirCadastro extends AppCompatActivity {
                     }, 1500);
 
                 }
-            };
+            }
 
         });
     }
@@ -456,7 +456,7 @@ public class ConcluirCadastro extends AppCompatActivity {
     // converte o i-esimo caractere do CPF em um numero:
     // por exemplo, transforma o caractere '0' no inteiro 0
     // (48 eh a posicao de '0' na tabela ASCII)
-                num = (int)(CPF.charAt(i) - 48);
+                num = CPF.charAt(i) - 48;
                 sm = sm + (num * peso);
                 peso = peso - 1;
             }
@@ -470,7 +470,7 @@ public class ConcluirCadastro extends AppCompatActivity {
             sm = 0;
             peso = 11;
             for(i=0; i<10; i++) {
-                num = (int)(CPF.charAt(i) - 48);
+                num = CPF.charAt(i) - 48;
                 sm = sm + (num * peso);
                 peso = peso - 1;
             }
@@ -481,9 +481,7 @@ public class ConcluirCadastro extends AppCompatActivity {
             else dig11 = (char)(r + 48);
 
     // Verifica se os digitos calculados conferem com os digitos informados.
-            if ((dig10 == CPF.charAt(9)) && (dig11 == CPF.charAt(10)))
-                return(true);
-            else return(false);
+            return (dig10 == CPF.charAt(9)) && (dig11 == CPF.charAt(10));
         } catch (InputMismatchException erro) {
             return(false);
         }

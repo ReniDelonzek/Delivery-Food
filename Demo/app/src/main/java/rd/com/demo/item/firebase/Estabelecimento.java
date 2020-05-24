@@ -17,6 +17,8 @@ public class Estabelecimento {
     private String cidade;
     private String email;
     private String cidadecode;
+    private double precoKm;
+    private double distanciamax;
 
     public String getId() {
         return id;
@@ -98,6 +100,14 @@ public class Estabelecimento {
 
     }
 
+    public double getPrecoKm() {
+        return precoKm;
+    }
+
+    public void setPrecoKm(double precoKm) {
+        this.precoKm = precoKm;
+    }
+
     public void setNome(String nome) {
         this.nome = nome;
     }
@@ -128,5 +138,13 @@ public class Estabelecimento {
 
     public void setCoordenadas(String coordenadas) {
         this.coordenadas = coordenadas;
+    }
+
+    public double getDistanciamax() {
+        return distanciamax;
+    }
+
+    public void setDistanciamax(double distanciamax) {
+        this.distanciamax = distanciamax;
     }
 }

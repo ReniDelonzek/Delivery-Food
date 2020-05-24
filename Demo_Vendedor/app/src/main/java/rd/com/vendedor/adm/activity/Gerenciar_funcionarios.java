@@ -25,7 +25,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import rd.com.vendedor.R;
-import rd.com.vendedor.adm.adapter.Adapter_Funcionarios;
+import rd.com.vendedor.adm.adapter.AdapterFuncionarios;
 import rd.com.vendedor.adm.item.Funcionario;
 import rd.com.vendedor.adm.utils.Constants;
 
@@ -64,7 +64,7 @@ public class Gerenciar_funcionarios extends AppCompatActivity {
         cidade = sharedPreferences.getString(Constants.cidade, "");
 
         recyclerView = findViewById(R.id.recyclerView);
-        adapter = new Adapter_Funcionarios(funcionarios);
+        adapter = new AdapterFuncionarios(funcionarios);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         recyclerView.setAdapter(adapter);
         buscar_dados();

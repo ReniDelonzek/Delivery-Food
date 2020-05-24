@@ -15,7 +15,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -74,10 +73,15 @@ public class AdapterMeusPedidos extends RecyclerView.Adapter {
            final Holder holder = (Holder) viewHolder;
            final Pedidos pedido = (Pedidos) list.get(position);
            definir_horario(pedido, obter_data(), holder);
-           holder.titulo.setText(pedido.getTitulo().replace("|", ", "));
+           holder.titulo.setText(pedido.getTitulo().replace("¨", ", "));
         holder.endereco.setText(pedido.getApelidoendereco());
         holder.status.setText(pedido.getStatus());
-
+        String[] pr = pedido.getPreco().split("¨");
+        double precot = Double.parseDouble(pedido.getPrecofrete());
+//        for (String aPr : pr) {
+  //          precot += Double.parseDouble(aPr);
+    //    }
+        //holder.precototal.setText(String.format(Locale.getDefault(), "R$%.2f", precot));
            switch (pedido.getStatus_code()){
                case enviado_code://pedido enviado
                    holder.statusBar.setBackgroundColor(color(R.color.holo_blue_bright, holder.status.getContext()));
@@ -115,22 +119,27 @@ public class AdapterMeusPedidos extends RecyclerView.Adapter {
                @Override
                public void onClick(View v) {
                    dialog("Confirme", "Deseja confirmar o recebimento do pedido?",
-                           holder.cancelar.getContext(), pedido, 0);
+                           holder.cancelar.getContext(), pedido, 0, holder);
                }
            });
-           if (pedido.getStatus_code() >= Constants.pronto_code){
+        if (pedido.getStatus_code() >= Constants.pronto_code){
                holder.cancelar.setVisibility(View.GONE);
            }
            else {
                holder.cancelar.setOnClickListener(new View.OnClickListener() {
                    @Override
                    public void onClick(View v) {
-                       dialog("", "Tem certeza que deseja cancelar o pedido?", v.getContext(), pedido, 1);
+                       dialog("", "Tem certeza que deseja cancelar o pedido?",
+                               v.getContext(), pedido, 1, holder);
                    }
                });
            }
+           if (pedido.getStatus_code() >= Constants.concluido_code){
+            holder.confirmar.setVisibility(View.GONE);
+            holder.endereco.setVisibility(View.GONE);
+           }
     }
-    private void atualizarPedido(final Pedidos pedido, String status, int statuscode, final View view, final boolean notificar) {
+    private void atualizarPedido(final Pedidos pedido, String status, int statuscode, final View view, final boolean notificar, final Holder holder) {
         FirebaseFirestore.getInstance()
                 .collection("estabelecimentos")
                 .document(Constants.cidade)
@@ -148,6 +157,8 @@ public class AdapterMeusPedidos extends RecyclerView.Adapter {
                             notificarEstabelecimento("O cliente cancelou um pedido", pedido.getTitulo(), pedido);
                         } else {
                             Snackbar.make(view, "Pedido confirmado com sucesso!", Snackbar.LENGTH_SHORT).show();
+                            holder.confirmar.setVisibility(View.GONE);
+                            holder.status.setText("Pedido Confirmado!");
                         }
                     }
                 }).addOnFailureListener(new OnFailureListener() {
@@ -158,10 +169,6 @@ public class AdapterMeusPedidos extends RecyclerView.Adapter {
             }
         });
 
-        Map<String, Object> sta = new HashMap<>();
-        sta.put("statuscode", statuscode);
-        sta.put("status", status);
-        sta.put("idestabelecimento", pedido.getIdEstabelecimento());
         FirebaseFirestore.getInstance()
                 .collection("Pedidos")
                 .document("users")
@@ -251,8 +258,8 @@ public class AdapterMeusPedidos extends RecyclerView.Adapter {
         return s.hasNext() ? s.next().replace(",", ",\n") : "";
     }
 
-    private void dialog(String title, String msg, final Context context, final Pedidos pedidos, final int i) {
-        AlertDialog.Builder builder = new AlertDialog.Builder((Activity)context);
+    private void dialog(String title, String msg, final Context context, final Pedidos pedidos, final int i, final Holder holder) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -264,10 +271,12 @@ public class AdapterMeusPedidos extends RecyclerView.Adapter {
             public void onClick(DialogInterface dialo, int which) {
                 switch (i){
                     case 0:
-                        atualizarPedido(pedidos, Constants.concluido, Constants.concluido_code, ((Activity) context).getCurrentFocus(), false);
+                        atualizarPedido(pedidos, Constants.concluido,
+                                Constants.concluido_code, ((Activity) context).getCurrentFocus(), false, holder);
                         break;
                     case 1:
-                        atualizarPedido(pedidos, Constants.cancelado, Constants.cancelado_code, ((Activity) context).getCurrentFocus(), true);
+                        atualizarPedido(pedidos, Constants.cancelado, Constants.cancelado_code,
+                                ((Activity) context).getCurrentFocus(), true, holder);
                         break;
                 }
 
@@ -298,8 +307,10 @@ public class AdapterMeusPedidos extends RecyclerView.Adapter {
                 holder_pedidos.hora.setText(String.format("A %s minutos atrás", String.valueOf(minatual - minpedido)));
             } else if (1 + horapedido == horaatual &&  //verifica se o pedido foi feito a menos de uma hora
                     minatual < minpedido){//e se ja nao se passou mais de 60 minutos
+
                 holder_pedidos.hora.setText(String.format(Locale.getDefault(),
-                        "Há %s%d minutos atrás", String.valueOf(60 - minpedido), minatual));
+                        "A %s minutos atrás",(60 - minpedido) + minatual));
+
             } else {//pedido foi feito a mais de 1 hr
                 int ho = horaatual - horapedido;
                 if (ho == 1) {
@@ -311,7 +322,7 @@ public class AdapterMeusPedidos extends RecyclerView.Adapter {
         } else if (diaatual - 1 == diapedido){//pedido foi feito outro dia
             holder_pedidos.hora.setText(String.format("Ontem às %s", pedidos.getHora()));
         } else {
-            holder_pedidos.hora.setText(String.format("%s %s", pedidos.getData().substring(0, 5),
+            holder_pedidos.hora.setText(String.format("%s %s", pedidos.getData(),
                     pedidos.getHora().substring(0, pedidos.getHora().length() - 3)));
         }
     }
@@ -333,7 +344,7 @@ public class AdapterMeusPedidos extends RecyclerView.Adapter {
     }
 
     private class Holder extends RecyclerView.ViewHolder {//
-        private final TextView titulo, status, statusBar, hora, endereco;
+        private final TextView titulo, status, statusBar, hora, endereco, precototal;
         private final RelativeLayout layout;
         private final Button confirmar, cancelar;
 
@@ -347,6 +358,7 @@ public class AdapterMeusPedidos extends RecyclerView.Adapter {
             hora = itemView.findViewById(R.id.data);
             confirmar = itemView.findViewById(R.id.confirmar);
             cancelar = itemView.findViewById(R.id.cancelar);
+            precototal = itemView.findViewById(R.id.precototal);
 
 
 

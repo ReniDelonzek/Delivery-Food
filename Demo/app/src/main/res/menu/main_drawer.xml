@@ -9,7 +9,7 @@
             android:title="Meus Pedidos" />
         <item
             android:id="@+id/carinhoitem"
-            android:title="Meu Carinho" />
+            android:title="Meu Carrinho" />
         <item
             android:id="@+id/favoritos"
             android:title="Meus Favoritos" />

@@ -34,7 +34,7 @@ public class SnapAdapterMain extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     private ArrayList<Snap_Item> mSnaps;
     private int POS = 0, TOTAL = 0;
-    // Disable touch detection for parent recyclerView if we use vertical nested recyclerViews
+
     private View.OnTouchListener mTouchListener = new View.OnTouchListener() {
         @Override
         public boolean onTouch(View v, MotionEvent event) {
@@ -50,6 +50,16 @@ public class SnapAdapterMain extends RecyclerView.Adapter<RecyclerView.ViewHolde
     public void addSnap(Snap_Item snap) {
         mSnaps.add(snap);
     }
+    public boolean contains(String tittle){
+        boolean k = false;
+        for(int i = 0; i < mSnaps.size(); i++){
+            if (mSnaps.get(i).getText().equals(tittle)){
+                k = true;
+                break;
+            }
+        }
+        return k;
+    }
 
     @Override
     public int getItemViewType(int position) {
@@ -60,12 +70,12 @@ public class SnapAdapterMain extends RecyclerView.Adapter<RecyclerView.ViewHolde
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())//falso
-                .inflate(R.layout.container_snap, parent, false);;
+                .inflate(R.layout.container_snap, parent, false);
         if (viewType == 0) {
             view = LayoutInflater.from(parent.getContext())//falso
                     .inflate(R.layout.conteiner_top, parent, false);
             view.findViewById(R.id.recyclerView).setOnTouchListener(mTouchListener);
-        } else if (viewType == 1 || viewType == 3 || viewType == 4){
+        } else if (viewType == 1 || viewType == 3 || viewType == 4 || viewType == 5){
             view = LayoutInflater.from(parent.getContext())//falso
                     .inflate(R.layout.container_snap, parent, false);
         } else if (viewType == 2 ){
@@ -99,7 +109,7 @@ public class SnapAdapterMain extends RecyclerView.Adapter<RecyclerView.ViewHolde
             layoutManager.setAlignItems(AlignItems.FLEX_START);
             layoutManager.setJustifyContent(JustifyContent.SPACE_AROUND);
             holder.recyclerView.setLayoutManager(layoutManager);
-        } else if (snap.getType() == 2 || snap.getType() == 3) {
+        } else if (snap.getType() == 2 || snap.getType() == 3 || snap.getType() == 5) {
             GridLayoutManager layoutManager = new GridLayoutManager(holder.recyclerView.getContext(), 2);
             holder.recyclerView.setLayoutManager(layoutManager);
         } else if (snap.getType() == 4){
@@ -153,7 +163,7 @@ public class SnapAdapterMain extends RecyclerView.Adapter<RecyclerView.ViewHolde
             relativeLayout = itemView.findViewById(R.id.relativeLayout);
             progressBar = itemView.findViewById(R.id.progressBar);
             snapTextView = itemView.findViewById(R.id.snapTextView);
-            recyclerView = (RecyclerView) itemView.findViewById(R.id.recyclerView);
+            recyclerView = itemView.findViewById(R.id.recyclerView);
             carregando = itemView.findViewById(R.id.carregando);
             carregando.setVisibility(View.GONE);
         }

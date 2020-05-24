@@ -102,5 +102,17 @@
             android:layout_alignEnd="@+id/data"
             android:layout_alignStart="@+id/status" />
 
+        <TextView
+            android:layout_marginTop="5dp"
+            android:id="@+id/precototal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/data"
+            android:layout_alignRight="@+id/data"
+            android:layout_below="@+id/data"
+            android:text="R$16.50"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
     </RelativeLayout>
 </android.support.v7.widget.CardView>

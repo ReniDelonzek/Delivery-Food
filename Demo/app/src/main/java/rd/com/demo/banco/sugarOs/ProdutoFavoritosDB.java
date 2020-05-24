@@ -12,16 +12,16 @@ public class ProdutoFavoritosDB extends SugarRecord<ProdutoFavoritosDB> implemen
     private String time;//momento que o produto foi adicionado
     private String categoria;
     private String amostra;//caminho amosta ao qual o produto esta vinculado
-    private String estabelecimento, estabelecimentoid, tipoestabelecimento;
+    private String estabelecimento, estabelecimento_id, tipo_estabelecimento;
     private String url;
     private String cidade;
     private String cidadecode;
+    private String nomeamostra;
 
 
     public ProdutoFavoritosDB(){}
 
-
-    public ProdutoFavoritosDB(String codigo, String nome, String descricao, double preco, String time, String categoria, String amostra, String estabelecimento, String estabelecimentoid, String tipoestabelecimento, String url) {
+    public ProdutoFavoritosDB(String codigo, String nome, String descricao, double preco, String time, String categoria, String amostra, String estabelecimento, String estabelecimento_id, String tipo_estabelecimento, String url, String cidade, String cidadecode, String nomeamostra) {
         this.codigo = codigo;
         this.nome = nome;
         this.descricao = descricao;
@@ -30,9 +30,20 @@ public class ProdutoFavoritosDB extends SugarRecord<ProdutoFavoritosDB> implemen
         this.categoria = categoria;
         this.amostra = amostra;
         this.estabelecimento = estabelecimento;
-        this.estabelecimentoid = estabelecimentoid;
-        this.tipoestabelecimento = tipoestabelecimento;
+        this.estabelecimento_id = estabelecimento_id;
+        this.tipo_estabelecimento = tipo_estabelecimento;
         this.url = url;
+        this.cidade = cidade;
+        this.cidadecode = cidadecode;
+        this.nomeamostra = nomeamostra;
+    }
+
+    public String getNomeamostra() {
+        return nomeamostra;
+    }
+
+    public void setNomeamostra(String nomeamostra) {
+        this.nomeamostra = nomeamostra;
     }
 
     public String getCidade() {
@@ -51,12 +62,12 @@ public class ProdutoFavoritosDB extends SugarRecord<ProdutoFavoritosDB> implemen
         this.cidadecode = cidadecode;
     }
 
-    public String getTipoestabelecimento() {
-        return tipoestabelecimento;
+    public String getTipo_estabelecimento() {
+        return tipo_estabelecimento;
     }
 
-    public void setTipoestabelecimento(String tipoestabelecimento) {
-        this.tipoestabelecimento = tipoestabelecimento;
+    public void setTipo_estabelecimento(String tipo_estabelecimento) {
+        this.tipo_estabelecimento = tipo_estabelecimento;
     }
 
     public String getUrl() {
@@ -65,14 +76,14 @@ public class ProdutoFavoritosDB extends SugarRecord<ProdutoFavoritosDB> implemen
     public void setUrl(String url) {
         this.url = url;
     }
-    public void setEstabelecimentoid(String estabelecimentoid) {
-        this.estabelecimentoid = estabelecimentoid;
+    public void setEstabelecimento_id(String estabelecimento_id) {
+        this.estabelecimento_id = estabelecimento_id;
     }
     public void setEstabelecimento(String estabelecimento) {
         this.estabelecimento = estabelecimento;
     }
-    public String getEstabelecimentoid() {
-        return estabelecimentoid;
+    public String getEstabelecimento_id() {
+        return estabelecimento_id;
     }
     public String getEstabelecimento() {
         return estabelecimento;

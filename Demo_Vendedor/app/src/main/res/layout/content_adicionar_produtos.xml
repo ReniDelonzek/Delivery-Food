@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="rd.com.vendedor.adm.activity.Adicionar_produtos"
+    tools:context="rd.com.pediupagouvendedor.activity.Adicionar_produtos"
     tools:showIn="@layout/activity_adicionar_produtos">
 
     <android.support.design.widget.TextInputLayout

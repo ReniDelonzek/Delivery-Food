@@ -26,13 +26,14 @@ public class Pedidos implements Serializable{
     private String apelidoendereco;
     private String cidade, cidadecode;
     private String id;
+    private String precofrete;
 
 
     public Pedidos(){}
     public Pedidos(String titulo, String descricao, String codigo,
                    String status, String nomeEstabelecimento, String idEstabelecimento, String tipoestabelecimento, String quantidade,
                    String userid, String username, String endereco, String levar, String data, String hora, String mensagem,
-                   int status_code, String userToken, String preco, String apelidoendereco, String cidadecode, String cidade) {
+                   int status_code, String userToken, String preco, String apelidoendereco, String cidadecode, String cidade, String precofrete) {
         this.titulo = titulo;
         this.descricao = descricao;
         this.codigo = codigo;
@@ -54,6 +55,7 @@ public class Pedidos implements Serializable{
         this.apelidoendereco = apelidoendereco;
         this.cidadecode = cidadecode;
         this.cidade = cidade;
+        this.precofrete = precofrete;
     }
 
     public String getTipoestabelecimento() {
@@ -207,5 +209,13 @@ public class Pedidos implements Serializable{
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getPrecofrete() {
+        return precofrete;
+    }
+
+    public void setPrecofrete(String precofrete) {
+        this.precofrete = precofrete;
     }
 }

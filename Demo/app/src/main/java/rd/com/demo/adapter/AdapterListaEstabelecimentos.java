@@ -19,8 +19,8 @@ import com.squareup.picasso.Picasso;
 import java.util.List;
 
 import rd.com.demo.R;
-import rd.com.demo.activity.ListaEstabelecimentos;
 import rd.com.demo.activity.DetalhesAmostra;
+import rd.com.demo.activity.ListaEstabelecimentos;
 import rd.com.demo.activity.ListaProdutosCategorias;
 import rd.com.demo.activity.MainActivity;
 import rd.com.demo.auxiliares.Constants;
@@ -148,8 +148,8 @@ public class AdapterListaEstabelecimentos extends RecyclerView.Adapter {
         HolderEstabelecimentos(View itemView) {
             super(itemView);
             linearLayout =  itemView.findViewById(R.id.linearLayout);
-            imageView = (ImageView) itemView.findViewById(R.id.imageView);
-            nameTextView = (TextView) itemView.findViewById(R.id.titulo);
+            imageView = itemView.findViewById(R.id.imageView);
+            nameTextView = itemView.findViewById(R.id.titulo);
         }
     }
     private class HolderAmostras extends RecyclerView.ViewHolder implements View.OnClickListener {//holder produtos

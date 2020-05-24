@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="rd.com.vendedor.adm.activity.Adicionar_produtos">
+    tools:context="rd.com.pediupagouvendedor.activity.Adicionar_produtos">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"

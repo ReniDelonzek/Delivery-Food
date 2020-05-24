@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="rd.com.vendedor.adm.activity.Adicionar_amostras"
+    tools:context="rd.com.pediupagouvendedor.activity.Adicionar_amostras"
     tools:showIn="@layout/activity_adicionar_amostras">
 
     <RelativeLayout

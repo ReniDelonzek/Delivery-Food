@@ -41,7 +41,7 @@ public class AdapterAmostras extends RecyclerView.Adapter {
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int position) {
-        final Amostras produto = (Amostras) list.get(position);
+        final Amostras produto = list.get(position);
         final Holder holder = (Holder) viewHolder;
         holder.titulo.setText(produto.getTitulo());
         String string;

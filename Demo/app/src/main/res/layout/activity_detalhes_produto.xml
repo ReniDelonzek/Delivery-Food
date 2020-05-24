@@ -21,11 +21,12 @@
             <ImageView
                 android:id="@+id/imagem_produto"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="280dp"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentTop="true"
-                android:minHeight="280dp"
+                android:maxHeight="260dp"
+                android:minHeight="220dp"
                 android:scaleType="centerCrop"
                 app:srcCompat="@drawable/cafe" />
 
@@ -50,20 +51,21 @@
                 android:maxLines="2"/>
 
             <TextView
-                android:layout_marginTop="5dp"
-                android:layout_marginRight="15dp"
                 android:id="@+id/descricao"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignLeft="@+id/nome"
                 android:layout_alignStart="@+id/nome"
                 android:layout_below="@+id/nome"
+                android:layout_marginEnd="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="5dp"
                 android:layout_toEndOf="@+id/include"
                 android:layout_toLeftOf="@+id/include"
                 android:layout_toRightOf="@+id/include"
                 android:layout_toStartOf="@+id/include"
                 android:text="3 opções diferentes"
-                android:layout_marginEnd="15dp" />
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/preco"
@@ -79,47 +81,27 @@
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
-            <Button
-                android:layout_marginTop="25dp"
-                android:id="@+id/comprar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignEnd="@+id/include"
-                android:layout_alignRight="@+id/include"
-                android:layout_below="@+id/include"
-                android:layout_marginEnd="6dp"
-                android:layout_marginRight="6dp"
-                android:background="@color/colorAccent"
-                android:foreground="?attr/selectableItemBackground"
-                android:paddingLeft="15dp"
-                android:paddingRight="15dp"
-                android:layout_marginBottom="15dp"
-                android:text="Comprar"
-                android:textColor="#fff" />
-
-            <Button
-                android:id="@+id/add_carinho"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignBaseline="@+id/comprar"
-                android:layout_alignBottom="@+id/comprar"
-                android:layout_alignLeft="@+id/descricao"
-                android:layout_alignStart="@+id/descricao"
-                android:background="#d9d9d9"
-                android:foreground="?attr/selectableItemBackground"
-                android:paddingLeft="15dp"
-                android:paddingRight="15dp"
-                android:text="Add Carinho" />
-
             <include
+                android:layout_marginLeft="10dp"
+                android:layout_marginBottom="20dp"
                 android:layout_marginTop="10dp"
                 layout="@layout/insert_remove"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignEnd="@+id/preco"
-                android:layout_alignRight="@+id/preco"
+                android:layout_alignParentLeft="true"
                 android:layout_below="@+id/nome"
                 android:id="@+id/include" />
+
+            <android.support.design.widget.FloatingActionButton
+                android:layout_marginTop="15dp"
+                android:layout_below="@+id/preco"
+                android:id="@+id/floatingActionButton2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignEnd="@+id/preco"
+                android:layout_alignRight="@+id/preco"
+                android:clickable="true"
+                app:srcCompat="@drawable/ic_shopping_cart_white_48dp" />
 
         </RelativeLayout>
     </android.support.v7.widget.CardView>
