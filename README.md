@@ -1,4 +1,4 @@
-# Delivery-Demo
+# Delivery Food
 Um sistema de pedidos para restaurantes em Android feito em Java e utilizando o Firebase 🚀🚀
 
 ## Principais Funcionalidades
