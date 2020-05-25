@@ -41,12 +41,12 @@ Um sistema de pedidos para restaurantes em Android feito em Java e utilizando o 
   <tr>
     <td><img src="https://github.com/ReniDelonzek/Delivery-Demo/blob/master/screenshots/tia4126629776353254029.png" width="280px" /></td>
     <td><img src="https://github.com/ReniDelonzek/Delivery-Demo/blob/master/screenshots/tia376781490876821054.jpeg" width="280px" /></td>
-    <td><img src="https://github.com/ReniDelonzek/Delivery-Demo/blob/master/screenshots/tia5667082388296641647.png" width="280px" /></td>
+    <td><img src="https://github.com/ReniDelonzek/Delivery-Demo/blob/master/screenshots/tia1154372307893135009.png" width="280px" /></td>
     <td><img src="https://github.com/ReniDelonzek/Delivery-Demo/blob/master/screenshots/tia938856430890402555.png" width="280px" /></td>
   </tr>
   <tr>
     <td><img src="https://github.com/ReniDelonzek/Delivery-Demo/blob/master/screenshots/tia1854312945720584747.png" width="280px" /></td>
-    <td><img src="https://github.com/ReniDelonzek/Delivery-Demo/blob/master/screenshots/tia1154372307893135009.png" width="280px" /></td>
+    <td><img src="https://github.com/ReniDelonzek/Delivery-Demo/blob/master/screenshots/tia6939840863797470027.png" width="280px" /></td>
     <td><img src="https://github.com/ReniDelonzek/Delivery-Demo/blob/master/screenshots/tia938856430890402555.png" width="280px" /></td>
   </tr>
 </table>  
