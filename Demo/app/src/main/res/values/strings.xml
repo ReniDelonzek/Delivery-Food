@@ -1,6 +1,5 @@
 <resources>
 
-    <string name="api_google_maps">AIzaSyCmBsLN2xG59dT-r9D-H3Jq_YfSzzbLpCY</string>
     <string name="app_name">MerCasa</string>
     <string name="propaganda">Propaganda</string>
     <string name="item">Item</string>
@@ -52,8 +51,6 @@
     <string name="title_activity_maps">Map</string>
 
 
-    <string name="facebook_app_id">181497239154111</string>
-    <string name="fb_login_protocol_scheme">fb181497239154111</string>
     <string name="title_activity_adicionar_estabelecimento">AdicionarEstabelecimento</string>
 
     <string-array name="tiposestabelecimentos">
