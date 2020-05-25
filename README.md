@@ -3,7 +3,7 @@ Um sistema de pedidos para restaurantes em Android feito em Java e utilizando o 
 
 ## Principais Funcionalidades
 
-### Cliente
+## Cliente
 
 - Navegar e descobrir entre os estabelecimentos cadastrados
 - 3 modalidades de pedidos
@@ -31,7 +31,7 @@ Um sistema de pedidos para restaurantes em Android feito em Java e utilizando o 
 </table>
  
  
-### Vendedor
+## Vendedor
 - Gerenciar produtos
 - Gerenciar funcionários
 - Gerenciar estabelecimentos
@@ -52,7 +52,7 @@ Um sistema de pedidos para restaurantes em Android feito em Java e utilizando o 
 </table>  
   
 
-### Funcionários
+## Funcionários
 - Acompanhar pedidos do estabelecimento
 - Suporte
 
