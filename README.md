@@ -39,7 +39,7 @@ Um sistema de pedidos para restaurantes em Android feito em Java e utilizando o 
 
  <table>
   <tr>
-    <td><img src="https://github.com/ReniDelonzek/Delivery-Demo/blob/master/screenshots/tia5667082388296641647.png" width="280px" /></td>
+    <td><img src="https://github.com/ReniDelonzek/Delivery-Demo/blob/master/screenshots/tia4126629776353254029.png" width="280px" /></td>
     <td><img src="https://github.com/ReniDelonzek/Delivery-Demo/blob/master/screenshots/tia376781490876821054.jpeg" width="280px" /></td>
     <td><img src="https://github.com/ReniDelonzek/Delivery-Demo/blob/master/screenshots/tia5667082388296641647.png" width="280px" /></td>
     <td><img src="https://github.com/ReniDelonzek/Delivery-Demo/blob/master/screenshots/tia938856430890402555.png" width="280px" /></td>
@@ -84,6 +84,6 @@ Um sistema de pedidos para restaurantes em Android feito em Java e utilizando o 
 - Circleimageview
 
 
-#Sobre
+# Sobre
 
 Este é um projeto usado para fins de estudo no início de minha vida de dev, lá por volta de 2017, quando ainda nem tinha iniciado a faculdade. Por um tempo ficou esquecido entre outros projetos, e então decidi torna-lo público de modo que talvez possa ajudar alguém em seus estudos.
