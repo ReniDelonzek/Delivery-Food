@@ -86,4 +86,4 @@ Um sistema de pedidos para restaurantes em Android feito em Java e utilizando o 
 
 # Sobre
 
-Este é um projeto usado para fins de estudo no início de minha vida de dev, lá por volta de 2017, quando ainda nem tinha iniciado a faculdade, então ele possui algumas coisas bem antigas. Por um tempo ficou esquecido entre outros projetos, e então decidi torna-lo público de modo que talvez possa ajudar alguém em seus estudos.
+Este é um projeto usado para fins de estudo no início de minha vida de dev, lá por volta de 2017, quando ainda nem tinha iniciado a faculdade, então ele possui algumas coisas bem antigas. Por um tempo ficou esquecido entre outros projetos, e então decidi torna-lo público de modo que talvez possa ajudar alguém em seus estudos. Se esse repositório contribuir para você de alguma forma, considere deixar uma 🌟. 
