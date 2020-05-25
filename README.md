@@ -21,3 +21,9 @@ Um sistema de pedidos para restaurantes em Android feito em Java e utilizando o 
   - Auth
   - Messaging
 - Google Places para definição de locais
+
+### Outras Bibliotecas
+
+- Flexbox
+- Picasso
+- Sugar
