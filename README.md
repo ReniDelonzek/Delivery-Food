@@ -11,9 +11,9 @@ Um sistema de pedidos para restaurantes em Android feito em Java e utilizando o 
   - Buscar no estabelecimento
   - Entregar na mesa
 - Login com 3 opções
- - Facebook
- - Google
- - Email
+  - Facebook
+  - Google
+  - Email
  
  
  <table>
