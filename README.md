@@ -1,5 +1,5 @@
 # Delivery Food
-Um sistema de pedidos para restaurantes em Android feito em Java e utilizando o Firebase 🚀🚀
+Um sistema de pedidos para restaurantes para Android feito com Java e Firebase 🚀🚀
 
 ## Principais Funcionalidades
 
@@ -86,4 +86,4 @@ Um sistema de pedidos para restaurantes em Android feito em Java e utilizando o 
 
 # Sobre
 
-Este é um projeto usado para fins de estudo no início de minha vida de dev, lá por volta de 2017, quando ainda nem tinha iniciado a faculdade, então ele possui algumas coisas bem antigas. Por um tempo ficou esquecido entre outros projetos, e então decidi torna-lo público de modo que talvez possa ajudar alguém em seus estudos. Se esse repositório contribuir para você de alguma forma, considere deixar uma 🌟. 
+Este é um projeto usado para fins de estudo no início de minha vida de dev, lá por volta de 2017, então ele possui algumas coisas bem antigas. Por um tempo foi deixado de lado entre outros projetos, e então decidi torna-lo público de modo que possa ajudar alguém com seus estudos. Se esse repositório contribuir para você de alguma forma, considere deixar uma 🌟. 
